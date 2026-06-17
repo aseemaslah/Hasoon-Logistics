@@ -1,8 +1,0 @@
-# Robots.txt for Hasoon Logistics
-# Managed with absolute compliance protocols
-
-User-agent: *
-Allow: /
-
-# Sitemap Indexing
-Sitemap: https://hasoonlogistics.com/sitemap.xml
