@@ -1347,7 +1347,7 @@ export default function Home() {
                 alt="Hasoon Logistics Logo"
                 width={170}
                 height={36}
-                style={{ objectFit: "contain", height: "auto" }}
+                style={{ objectFit: "contain", height: "auto", width: "auto" }}
                 priority
               />
             </a>
