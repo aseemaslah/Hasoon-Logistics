@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110" width="100%" height="100%">
+  <defs>
+    <!-- Brand colors matching user request -->
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C170" />
+      <stop offset="50%" stop-color="#C6A75E" />
+      <stop offset="100%" stop-color="#A5843E" />
+    </linearGradient>
+    
+    <linearGradient id="favNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D3B5C" />
+      <stop offset="100%" stop-color="#1F2A44" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(5, 5)">
+    <!-- Left Navy Diamond -->
+    <rect x="15" y="15" width="32" height="32" transform="rotate(45 31 31)" 
+          fill="none" stroke="url(#favNavy)" stroke-width="6" stroke-linejoin="miter" />
+
+    <!-- Right Navy Diamond -->
+    <rect x="55" y="15" width="32" height="32" transform="rotate(45 71 71)" 
+          fill="none" stroke="url(#favNavy)" stroke-width="6" stroke-linejoin="miter" />
+          
+    <!-- Middle Gold Diamond -->
+    <rect x="35" y="15" width="32" height="32" transform="rotate(45 51 51)" 
+          fill="none" stroke="url(#favGold)" stroke-width="6" stroke-linejoin="miter" />
+
+    <!-- Weave details -->
+    <path d="M 40 10 L 52 22" fill="none" stroke="url(#favNavy)" stroke-width="6" stroke-linecap="square" />
+    <path d="M 60 22 L 72 10" fill="none" stroke="url(#favNavy)" stroke-width="6" stroke-linecap="square" />
+  </g>
+</svg>

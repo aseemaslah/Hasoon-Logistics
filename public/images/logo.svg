@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 85" width="100%" height="100%">
+  <!-- Definitions for Colors -->
+  <defs>
+    <!-- Brand colors matching user request -->
+    <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C170" />
+      <stop offset="50%" stop-color="#C6A75E" />
+      <stop offset="100%" stop-color="#A5843E" />
+    </linearGradient>
+    
+    <linearGradient id="logoNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D3B5C" />
+      <stop offset="100%" stop-color="#1F2A44" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(10, 10)">
+    <!-- THREE INTERLINKED DIAMONDS (LOGO MARK) -->
+    <!-- Left Navy Diamond -->
+    <rect x="15" y="15" width="32" height="32" transform="rotate(45 31 31)" 
+          fill="none" stroke="url(#logoNavy)" stroke-width="6" stroke-linejoin="miter" />
+
+    <!-- Right Navy Diamond -->
+    <rect x="55" y="15" width="32" height="32" transform="rotate(45 71 71)" 
+          fill="none" stroke="url(#logoNavy)" stroke-width="6" stroke-linejoin="miter" />
+          
+    <!-- Middle Gold Diamond -->
+    <rect x="35" y="15" width="32" height="32" transform="rotate(45 51 51)" 
+          fill="none" stroke="url(#logoGold)" stroke-width="6" stroke-linejoin="miter" />
+
+    <!-- Weave details: Redraw small parts of Navy to overlap Gold -->
+    <path d="M 40 10 L 52 22" fill="none" stroke="url(#logoNavy)" stroke-width="6" stroke-linecap="square" />
+    <path d="M 60 22 L 72 10" fill="none" stroke="url(#logoNavy)" stroke-width="6" stroke-linecap="square" />
+  </g>
+
+  <!-- BRAND NAME: HASOON (ONLY) -->
+  <g transform="translate(120, 50)">
+    <text font-family="'Cormorant Garamond', 'Georgia', serif" font-size="44" font-weight="700" fill="url(#logoNavy)" letter-spacing="1">
+      <tspan x="0" y="0">H</tspan>
+      <tspan x="36" y="0">A</tspan>
+      <tspan x="72" y="0">S</tspan>
+    </text>
+    
+    <!-- Overlapping O's with custom shapes -->
+    <!-- First O (Gold and Navy) -->
+    <circle cx="128" cy="-12" r="18" fill="none" stroke="url(#logoNavy)" stroke-width="5" />
+    <!-- Golden left crescent overlay -->
+    <path d="M 128 -30 A 18 18 0 0 0 110 -12 A 13 13 0 0 1 128 -25 Z" fill="url(#logoGold)" />
+
+    <!-- Second O (Gold and Navy) -->
+    <circle cx="156" cy="-12" r="18" fill="none" stroke="url(#logoNavy)" stroke-width="5" />
+    <!-- Golden left crescent overlay -->
+    <path d="M 156 -30 A 18 18 0 0 0 138 -12 A 13 13 0 0 1 156 -25 Z" fill="url(#logoGold)" />
+    <!-- Weave overlap -->
+    <path d="M 128 -30 A 18 18 0 0 1 146 -12 A 18 18 0 0 1 128 6" fill="none" stroke="url(#logoNavy)" stroke-width="5" stroke-linecap="round" />
+
+    <text font-family="'Cormorant Garamond', 'Georgia', serif" font-size="44" font-weight="700" fill="url(#logoNavy)" letter-spacing="1">
+      <tspan x="182" y="0">N</tspan>
+    </text>
+  </g>
+</svg>
