@@ -7,8 +7,16 @@ import BackgroundShader from "@/components/BackgroundShader";
 import InteractiveTruck from "@/components/InteractiveTruck";
 
 export const metadata = {
-  title: "Road Transportation Services | Hasoon Logistics",
-  description: "Cross-border GCC road freight forwarding. Secure temperature-controlled overland dispatch solutions.",
+  title: "Cross-Border Road Freight & Overland Trucking - Hasoon Logistics",
+  description: "Hasoon Logistics offers secure overland road transportation and trucking services across the GCC (Dubai, Saudi Arabia, Oman), providing reliable FTL/LTL cargo transport.",
+  keywords: [
+    "road transport services",
+    "overland trucking gcc",
+    "cross-border road freight",
+    "ftl ltl trucking dubai",
+    "logistics trucking company",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/services/road-transportation",
   },

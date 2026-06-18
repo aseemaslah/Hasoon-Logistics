@@ -6,8 +6,16 @@ import ClientInitializer from "@/components/ClientInitializer";
 import BackgroundShader from "@/components/BackgroundShader";
 
 export const metadata = {
-  title: "Customs Clearance & Brokerage | Hasoon Logistics",
-  description: "WCO AEO certified customs brokerage. Streamlining international trade compliance, HS code audits, and customs declarations.",
+  title: "Customs Clearance Agent & Brokerage Services - Hasoon Logistics",
+  description: "Hasoon Logistics is the best customs clearance agent in Dubai. WCO AEO certified customs brokerage streamlining international trade compliance and import/export declarations.",
+  keywords: [
+    "customs clearance agent dubai",
+    "saudi customs clearance broker",
+    "import export customs clearance",
+    "customs broker dubai",
+    "aeo certified customs broker",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/services/customs-clearance",
   },

@@ -8,8 +8,17 @@ import BackgroundShader from "@/components/BackgroundShader";
 import SaudiArabiaAnimation from "@/components/SaudiArabiaAnimation";
 
 export const metadata = {
-  title: "Logistics & Customs Brokerage in Saudi Arabia | Hasoon Logistics",
-  description: "Certified customs clearance agents in Riyadh, Jeddah, and Dammam. Cross-border overland transport compliance and SABER filing support.",
+  title: "Best Logistics Company & Customs Clearance in Saudi Arabia | Hasoon Logistics",
+  description: "Hasoon Logistics is the best logistics company and certified customs clearance agent in Saudi Arabia. We serve Riyadh, Jeddah Islamic Port, and Dammam with SABER and FASAH compliance.",
+  keywords: [
+    "saudi customs clearance agent",
+    "riyadh logistics company",
+    "customs broker saudi arabia",
+    "jeddah customs clearance",
+    "overland trucking dubai to saudi",
+    "saber compliance saudi",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/saudi-arabia",
   },

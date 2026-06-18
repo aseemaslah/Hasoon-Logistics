@@ -6,8 +6,17 @@ import ClientInitializer from "@/components/ClientInitializer";
 import BackgroundShader from "@/components/BackgroundShader";
 
 export const metadata = {
-  title: "Freight Forwarding Services | Hasoon Logistics",
-  description: "Direct B2B freight forwarding solutions across global routes. Multi-modal logistics managed securely by WCO AEO compliance officers.",
+  title: "Best Freight Forwarding & Cargo Services - Hasoon Logistics",
+  description: "Hasoon Logistics is a premier international freight forwarder. We provide custom B2B cargo forwarding, air/sea shipping, and customs brokerage globally.",
+  keywords: [
+    "best freight forwarder in dubai",
+    "freight forwarding services",
+    "international freight forwarder",
+    "cargo forwarding dubai",
+    "b2b logistics solutions",
+    "multi-modal cargo shipping",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/services/freight-forwarding",
   },

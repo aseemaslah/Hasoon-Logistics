@@ -10,8 +10,21 @@ import InteractiveTruck from "@/components/InteractiveTruck";
 import StatCounter from "@/components/StatCounter";
 
 export const metadata = {
-  title: "Hasoon Logistics | Global Supply Chain & Customs Brokerage",
-  description: "Experience intercontinental precision. WCO AEO certified operator offering elite air freight, ocean charters, overland dispatch, and temperature-controlled warehousing.",
+  title: "Best Logistics Company & Freight Forwarding in Dubai - Hasoon Logistics",
+  description: "Hasoon Logistics is the best logistics company in Dubai and premier international freight forwarder. We specialize in air cargo, sea freight, customs clearance, and cold-chain warehousing across UAE, Saudi Arabia, India, and China.",
+  keywords: [
+    "best logistics company in dubai",
+    "best freight forwarder in dubai",
+    "international freight forwarding services",
+    "customs clearance agent dubai",
+    "saudi customs clearance broker",
+    "cold chain logistics dubai",
+    "sea freight company dubai",
+    "china to dubai shipping agent",
+    "air cargo services dubai",
+    "overland trucking gcc",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/",
   },
@@ -25,17 +38,25 @@ export default function Home() {
     "name": "Hasoon Logistics",
     "url": "https://hasoonlogistics.com/",
     "logo": "https://hasoonlogistics.com/images/logo.svg",
+    "description": "Hasoon Logistics is the best logistics company and international freight forwarder in Dubai, offering premium air cargo, sea freight, road transport, customs brokerage, and GDP temperature-controlled warehousing.",
     "sameAs": [
       "https://www.instagram.com/hasoonlogistics/"
     ],
-    "areaServed": ["AE", "IN", "SA", "CN"],
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "United Arab Emirates" },
+      { "@type": "AdministrativeArea", "name": "Saudi Arabia" },
+      { "@type": "AdministrativeArea", "name": "India" },
+      { "@type": "AdministrativeArea", "name": "China" }
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Luxury Trade Tower, Level 44, Sheikh Zayed Road",
       "addressLocality": "Dubai",
+      "addressRegion": "Dubai",
       "addressCountry": "AE"
     },
-    "telephone": "+971501234567"
+    "telephone": "+971501234567",
+    "priceRange": "$$$"
   };
 
   return (
@@ -62,9 +83,9 @@ export default function Home() {
           <div className="container hero-grid">
             <div className="hero-content scroll-reveal scroll-revealed">
               <span className="hero-subtitle">Intercontinental Precision</span>
-              <h1>Engineered Supply Chains</h1>
+              <h1>Global Freight Forwarding & Logistics Services</h1>
               <p>
-                Welcome to Hasoon Logistics. We establish global paths for security, compliance, and velocity. From specialized climate-controlled warehousing to express intercontinental cargo charters, we carry your assets with absolute care.
+                Welcome to Hasoon Logistics, the best logistics company and international freight forwarder. We establish high-velocity trade lanes across Dubai, Saudi Arabia, India, and China, offering certified customs clearance, ocean shipping, air cargo, and temperature-controlled cold chain warehousing.
               </p>
               <div className="hero-actions">
                 <a href="#contact" className="btn-glass-3d" id="hero-btn-quote">
@@ -102,12 +123,12 @@ export default function Home() {
             <div className="services-split">
               <div className="scroll-reveal">
                 <span className="hero-subtitle">Elite Heritage</span>
-                <h2>Our Corporate Legacy</h2>
+                <h2>The Best Logistics Company in Dubai for Global Trade</h2>
                 <p>
-                  At Hasoon Logistics, we believe that cargo is not merely commodities—it is our clients&rsquo; reputation, hard work, and business security. Headquartered in Dubai, the absolute crossroads of international commerce, we connect critical trade lanes between East and West.
+                  At Hasoon Logistics, we have built our reputation as the best logistics company in Dubai by treating cargo not merely as commodities, but as our clients&rsquo; reputation, hard work, and business security. Headquartered in Dubai, the absolute crossroads of international commerce, we connect critical trade lanes between East and West as a trusted shipping and customs clearance agent.
                 </p>
                 <p>
-                  Guided by logistics veterans Aseem Aslah Hasoon and our executive compliance desk, we support large-scale industrial cargo movements with complete safety guarantees and strict biometrics.
+                  Guided by logistics veterans Aseem Aslah Hasoon and our executive compliance desk, we act as a leading international freight forwarder, supporting large-scale industrial cargo movements, customs brokerage clearance, and supply chain logistics with complete safety guarantees and strict biometrics.
                 </p>
               </div>
 
@@ -150,28 +171,28 @@ export default function Home() {
             <div className="services-split" style={{ direction: "rtl" }}>
               <div className="scroll-reveal" style={{ direction: "ltr" }}>
                 <span className="hero-subtitle">Capabilities</span>
-                <h2>Global Transport Systems</h2>
+                <h2>Our Freight Forwarding & Cargo Services</h2>
                 <p>
-                  Our shipping capabilities span air charters, oceanic lanes, and overland logistics systems, optimized dynamically by modern tracking systems.
+                  Our shipping capabilities span international air freight forwarding, global sea freight shipping, secure overland road transportation, and specialized 3PL customs brokerage, optimized dynamically by modern tracking systems.
                 </p>
                 <ul className="service-list">
                   <li>
                     <svg viewBox="0 0 24 24">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                     </svg>
-                    <span>Priority Air Cargo: 12-36 hours express global transit</span>
+                    <span>Priority Air Cargo: 12-36 hours express global air freight forwarding</span>
                   </li>
                   <li>
                     <svg viewBox="0 0 24 24">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                     </svg>
-                    <span>Oceanic Freight: High capacity FCL/LCL spaces</span>
+                    <span>Sea Freight Cargo: High capacity ocean freight shipping &amp; FCL/LCL spaces</span>
                   </li>
                   <li>
                     <svg viewBox="0 0 24 24">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                     </svg>
-                    <span>Luxury Warehousing: &plusmn;0.2&deg;C temperature precision vaulting</span>
+                    <span>Cold Chain Logistics: &plusmn;0.2&deg;C temperature-controlled 3PL warehouse storage</span>
                   </li>
                 </ul>
               </div>
@@ -209,51 +230,51 @@ export default function Home() {
           <div className="container">
             <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto 5rem auto" }} className="scroll-reveal">
               <span className="hero-subtitle">International Networks</span>
-              <h2>Global Trade Gateways & Regional Hubs</h2>
+              <h2>Global Trade Gateways &amp; Local Customs Clearance Hubs</h2>
               <p>
                 We operate directly inside primary industrial trade gateways, establishing complete compliance and high-performance shipping corridors for corporate consignments.
               </p>
             </div>
-
+ 
             <div className="mission-vision-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "2rem" }}>
               {/* Card 1: UAE */}
               <a href="/uae" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit", transition: "transform 0.3s ease, border-color 0.3s ease" }}>
                 <span className="text-gold" style={{ fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>Dubai Head Office</span>
                 <h3 style={{ margin: "0.5rem 0 1rem 0" }}>United Arab Emirates</h3>
                 <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
-                  Clearing Jebel Ali Port (JAFZA) and DAFZA cargo via direct Dubai Trade portals. Gateway to overland GCC linehauls.
+                  Clearing Jebel Ali Port (JAFZA) and DAFZA cargo via direct Dubai Trade portals. Top-rated customs clearance agent in Dubai, UAE.
                 </p>
-                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Gateway →</span>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Dubai Gateway →</span>
               </a>
-
+ 
               {/* Card 2: Saudi Arabia */}
               <a href="/saudi-arabia" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit" }}>
                 <span className="text-gold" style={{ fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>Olaya Riyadh</span>
                 <h3 style={{ margin: "0.5rem 0 1rem 0" }}>Saudi Arabia</h3>
                 <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
-                  Streamlining Riyadh and Jeddah Islamic Port cargo via FASAH customs broker systems and SABER compliance.
+                  Streamlining Riyadh and Jeddah Islamic Port cargo via FASAH customs broker systems and SABER compliance. Expert Saudi customs clearance broker.
                 </p>
-                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Gateway →</span>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Saudi Gateway →</span>
               </a>
-
+ 
               {/* Card 3: India */}
               <a href="/india" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit" }}>
                 <span className="text-gold" style={{ fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>JNPT Mumbai</span>
                 <h3 style={{ margin: "0.5rem 0 1rem 0" }}>India Operations</h3>
                 <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
-                  Certified customs clearance agent services in Mumbai, Mundra, and Chennai. Exploiting CEPA duty advantages.
+                  Certified customs clearance agent services in Mumbai, Mundra, and Chennai. Export/import B2B freight forwarding and custom clearances.
                 </p>
-                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Gateway →</span>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore India Gateway →</span>
               </a>
-
+ 
               {/* Card 4: China */}
               <a href="/china" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit" }}>
                 <span className="text-gold" style={{ fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>Shanghai & Shenzhen</span>
                 <h3 style={{ margin: "0.5rem 0 1rem 0" }}>China Operations</h3>
                 <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
-                  Sourcing consolidation and export logistics from Shanghai, Ningbo, and Guangzhou to Middle East markets.
+                  Sourcing consolidation and export cargo forwarding from Shanghai, Ningbo, and Guangzhou. Your leading China to Dubai shipping agent.
                 </p>
-                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Gateway →</span>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore China Gateway →</span>
               </a>
             </div>
 

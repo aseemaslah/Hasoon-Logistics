@@ -37,6 +37,11 @@ export default function ClientInitializer() {
     // 2. Scroll Reveal Observer
     const revealElements = document.querySelectorAll(".scroll-reveal");
 
+    if (typeof window === "undefined" || !window.IntersectionObserver) {
+      revealElements.forEach((el) => el.classList.add("scroll-revealed"));
+      return;
+    }
+
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {

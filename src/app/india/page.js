@@ -8,8 +8,17 @@ import BackgroundShader from "@/components/BackgroundShader";
 import IndiaAnimation from "@/components/IndiaAnimation";
 
 export const metadata = {
-  title: "Logistics & Customs Brokerage in India | Hasoon Logistics",
-  description: "Certified customs clearance, multi-modal B2B freight forwarding, and supply chain management across Nhava Sheva (JNPT), Mumbai, and Delhi NCR.",
+  title: "Best Customs Broker & Freight Forwarder in India | Hasoon Logistics",
+  description: "Hasoon Logistics is the best customs broker and international freight forwarder in India. We clear JNPT Nhava Sheva, Mumbai, Chennai, and Mundra cargo efficiently.",
+  keywords: [
+    "customs broker in mumbai",
+    "best freight forwarder in india",
+    "jnpt customs clearance agent",
+    "shipping company nhava sheva",
+    "india to uae logistics",
+    "multi-modal transport india",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/india",
   },

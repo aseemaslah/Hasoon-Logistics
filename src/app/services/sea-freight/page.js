@@ -7,8 +7,16 @@ import BackgroundShader from "@/components/BackgroundShader";
 import InteractiveShip from "@/components/InteractiveShip";
 
 export const metadata = {
-  title: "Sea Freight Services | Hasoon Logistics",
-  description: "Global ocean freight forwarding solutions. Secure Full Container Load (FCL) and Less than Container Load (LCL) shipping routes.",
+  title: "Global Sea Freight Shipping & Ocean Cargo - Hasoon Logistics",
+  description: "Hasoon Logistics is the best sea freight forwarding company in Dubai, offering secure Full Container Load (FCL) and Less than Container Load (LCL) ocean cargo shipping globally.",
+  keywords: [
+    "sea freight forwarding company",
+    "ocean cargo shipping dubai",
+    "best shipping company in uae",
+    "fcl lcl ocean freight",
+    "container shipping services",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/services/sea-freight",
   },

@@ -7,8 +7,17 @@ import BackgroundShader from "@/components/BackgroundShader";
 import ChinaAnimation from "@/components/ChinaAnimation";
 
 export const metadata = {
-  title: "Export Logistics & Shipping in China | Hasoon Logistics",
-  description: "Global shipping agent services consolidating B2B containers from Shanghai, Ningbo, and Shenzhen to the Middle East and India.",
+  title: "China to Dubai Shipping Agent & Export Cargo Logistics | Hasoon Logistics",
+  description: "Hasoon Logistics is the best China to Dubai shipping agent and freight forwarder, offering container consolidation and export customs clearance from Shanghai, Ningbo, and Shenzhen.",
+  keywords: [
+    "china to dubai shipping agent",
+    "china to dubai freight forwarder",
+    "shanghai export shipping agent",
+    "china export customs broker",
+    "shipping company china to dubai",
+    "container consolidation china",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/china",
   },

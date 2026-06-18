@@ -8,8 +8,17 @@ import BackgroundShader from "@/components/BackgroundShader";
 import UaeAnimation from "@/components/UaeAnimation";
 
 export const metadata = {
-  title: "Logistics & Customs Brokerage in UAE | Hasoon Logistics",
-  description: "Enterprise logistics and certified customs clearance in Dubai, Jebel Ali (JAFZA), and Abu Dhabi. UAE-India trade corridor compliance specialists.",
+  title: "Best Logistics Company & Customs Clearance in Dubai, UAE | Hasoon Logistics",
+  description: "Hasoon Logistics is the best logistics company and certified customs clearance agent in Dubai, UAE. We streamline Jebel Ali Port (JAFZA), DAFZA, and Abu Dhabi cargo clearance.",
+  keywords: [
+    "best logistics company in dubai",
+    "customs clearance agent dubai",
+    "freight forwarder in dubai",
+    "jebel ali customs broker",
+    "dubai trade customs clearance",
+    "shipping company uae",
+    "hasoon logistics"
+  ],
   alternates: {
     canonical: "https://hasoonlogistics.com/uae",
   },
