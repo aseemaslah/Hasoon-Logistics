@@ -79,6 +79,18 @@ export default function SaudiArabiaAnimation() {
 
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
+    
+    const handleTouchStart = () => {
+      isHovered.current = true;
+    };
+    
+    const handleTouchEnd = () => {
+      isHovered.current = false;
+    };
+    
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", handleTouchEnd, { passive: true });
 
     const animate = () => {
       time += 0.015;
@@ -235,7 +247,8 @@ export default function SaudiArabiaAnimation() {
       }
 
       // 7. Update Dunes Parallax Scroll
-      const speedMult = isHovered.current ? 2.5 : 1.0;
+      const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+      const speedMult = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
       duneScroll += 0.4 * speedMult;
 
       // Parallax Layer 1: Distant Dunes (Slowest, deep indigo)
@@ -300,6 +313,9 @@ export default function SaudiArabiaAnimation() {
       if (container) {
         container.removeEventListener("mouseenter", handleMouseEnter);
         container.removeEventListener("mouseleave", handleMouseLeave);
+        container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchend", handleTouchEnd);
+        container.removeEventListener("touchcancel", handleTouchEnd);
       }
     };
   }, []);

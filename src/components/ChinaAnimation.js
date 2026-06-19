@@ -54,6 +54,18 @@ export default function ChinaAnimation() {
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
 
+    const handleTouchStart = () => {
+      isHovered.current = true;
+    };
+
+    const handleTouchEnd = () => {
+      isHovered.current = false;
+    };
+
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", handleTouchEnd, { passive: true });
+
     const animate = () => {
       time += 0.012;
       animationFrameId = requestAnimationFrame(animate);
@@ -148,7 +160,8 @@ export default function ChinaAnimation() {
       ctx.stroke();
 
       // 4. Update and Draw Cargo Vessel Fleets
-      const multiplier = isHovered.current ? 2.5 : 1.0;
+      const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+      const multiplier = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
       vessels.forEach((vessel) => {
         const originPort = ports.find((p) => p.name === vessel.port);
         if (!originPort) return;
@@ -258,6 +271,9 @@ export default function ChinaAnimation() {
       if (container) {
         container.removeEventListener("mouseenter", handleMouseEnter);
         container.removeEventListener("mouseleave", handleMouseLeave);
+        container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchend", handleTouchEnd);
+        container.removeEventListener("touchcancel", handleTouchEnd);
       }
     };
   }, []);

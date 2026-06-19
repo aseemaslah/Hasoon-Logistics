@@ -48,9 +48,32 @@ export default function UaeAnimation() {
       isHovered.current = false;
     };
 
+    const handleTouchMove = (e) => {
+      if (e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      mouse.current = {
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top
+      };
+    };
+
+    const handleTouchStart = (e) => {
+      isHovered.current = true;
+      handleTouchMove(e);
+    };
+
+    const handleTouchEnd = () => {
+      isHovered.current = false;
+    };
+
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchmove", handleTouchMove, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", handleTouchEnd, { passive: true });
 
     // Dynamic trade routes
     const routes = [
@@ -117,7 +140,8 @@ export default function UaeAnimation() {
       ctx.stroke();
 
       // 3. Draw Route Lanes and Detailed Vehicles
-      const multiplier = isHovered.current ? 2.5 : 1.0;
+      const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+      const multiplier = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
 
       routes.forEach((route) => {
         const startX = route.start.x * w;
@@ -225,6 +249,10 @@ export default function UaeAnimation() {
         container.removeEventListener("mousemove", handleMouseMove);
         container.removeEventListener("mouseenter", handleMouseEnter);
         container.removeEventListener("mouseleave", handleMouseLeave);
+        container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchmove", handleTouchMove);
+        container.removeEventListener("touchend", handleTouchEnd);
+        container.removeEventListener("touchcancel", handleTouchEnd);
       }
     };
   }, []);

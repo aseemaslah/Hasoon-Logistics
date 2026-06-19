@@ -343,7 +343,8 @@ export default function InteractiveShip() {
         animationFrameId = requestAnimationFrame(animate);
         time += 0.015;
 
-        const speedMultiplier = isHovered.current ? 2.5 : 1.0;
+        const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+        const speedMultiplier = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
 
         if (!isDragging) {
           rotationSpeed.y *= friction;

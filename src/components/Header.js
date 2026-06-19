@@ -374,6 +374,7 @@ export default function Header() {
 
       {/* Mobile Menu Drawer Content */}
       <div
+        className={`mobile-nav-drawer ${mobileMenuOpen ? "mobile-nav-open" : ""}`}
         style={{
           position: "fixed",
           top: 0,
@@ -397,69 +398,69 @@ export default function Header() {
         }}
       >
         <ul className="mobile-nav-links">
-          <li className={activeSection === "home" && isHome ? "active" : ""}>
+          <li className={activeSection === "home" && isHome ? "active" : ""} style={{ transitionDelay: "40ms" }}>
             <a href={getLink("home")} onClick={() => setMobileMenuOpen(false)}>
               Home Base
             </a>
           </li>
-
+ 
           {/* Services group */}
-          <li style={{ marginTop: "1rem", marginBottom: "0.25rem" }}>
+          <li style={{ transitionDelay: "80ms", marginTop: "1rem", marginBottom: "0.25rem" }}>
             <span style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "1.5px", color: "var(--color-accent-gold)", textTransform: "uppercase" }}>Services</span>
           </li>
-          <li>
+          <li style={{ transitionDelay: "120ms" }}>
             <a href="/services/freight-forwarding" onClick={() => setMobileMenuOpen(false)}>Freight Forwarding</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "160ms" }}>
             <a href="/services/air-freight" onClick={() => setMobileMenuOpen(false)}>Air Cargo</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "200ms" }}>
             <a href="/services/sea-freight" onClick={() => setMobileMenuOpen(false)}>Ocean Shipping</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "240ms" }}>
             <a href="/services/road-transportation" onClick={() => setMobileMenuOpen(false)}>Overland Trucking</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "280ms" }}>
             <a href="/services/warehousing" onClick={() => setMobileMenuOpen(false)}>Cold Chain Vault</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "320ms" }}>
             <a href="/services/customs-clearance" onClick={() => setMobileMenuOpen(false)}>Customs Brokerage</a>
           </li>
-
+ 
           {/* Gateways group */}
-          <li style={{ marginTop: "1rem", marginBottom: "0.25rem" }}>
+          <li style={{ transitionDelay: "360ms", marginTop: "1rem", marginBottom: "0.25rem" }}>
             <span style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "1.5px", color: "var(--color-accent-gold)", textTransform: "uppercase" }}>Global Network</span>
           </li>
-          <li>
+          <li style={{ transitionDelay: "400ms" }}>
             <a href="/uae" onClick={() => setMobileMenuOpen(false)}>United Arab Emirates</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "440ms" }}>
             <a href="/saudi-arabia" onClick={() => setMobileMenuOpen(false)}>Saudi Arabia Hub</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "480ms" }}>
             <a href="/india" onClick={() => setMobileMenuOpen(false)}>India Operations</a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "520ms" }}>
             <a href="/china" onClick={() => setMobileMenuOpen(false)}>China Gateway</a>
           </li>
-
+ 
           {/* Portal group */}
-          <li style={{ marginTop: "1rem", marginBottom: "0.25rem" }}>
+          <li style={{ transitionDelay: "560ms", marginTop: "1rem", marginBottom: "0.25rem" }}>
             <span style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "1.5px", color: "var(--color-accent-gold)", textTransform: "uppercase" }}>Client Portal</span>
           </li>
-          <li>
+          <li style={{ transitionDelay: "600ms" }}>
             <a href="#" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setTrackingStatus("idle"); setTrackingId(""); setTrackingError(""); setTrackingModalOpen(true); }}>
               Track Consignment
             </a>
           </li>
-          <li>
+          <li style={{ transitionDelay: "640ms" }}>
             <a href="#" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setLoginStatus("idle"); setLoginEmail(""); setLoginPasscode(""); setLoginMessage(""); setLoginModalOpen(true); }}>
               Client Login
             </a>
           </li>
-
+ 
           {/* Contact Us */}
-          <li style={{ marginTop: "1.5rem" }} className={activeSection === "contact" && isHome ? "active" : ""}>
+          <li style={{ transitionDelay: "680ms", marginTop: "1.5rem" }} className={activeSection === "contact" && isHome ? "active" : ""}>
             <a href={getLink("contact")} onClick={() => setMobileMenuOpen(false)}>
               Contact Us
             </a>

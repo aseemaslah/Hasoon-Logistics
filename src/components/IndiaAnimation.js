@@ -52,8 +52,22 @@ export default function IndiaAnimation() {
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
 
+    const handleTouchStart = () => {
+      isHovered.current = true;
+    };
+
+    const handleTouchEnd = () => {
+      isHovered.current = false;
+    };
+
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", handleTouchEnd, { passive: true });
+
     const animate = () => {
-      time += 0.015;
+      const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+      const speedMult = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
+      time += 0.015 * speedMult;
       animationFrameId = requestAnimationFrame(animate);
 
       const w = canvas.clientWidth;
@@ -213,7 +227,7 @@ export default function IndiaAnimation() {
       ctx.stroke();
 
       // 4. Update & Draw Cargo Train
-      const trainSpeed = isHovered.current ? 3.0 : 1.3;
+      const trainSpeed = (isHovered.current ? 3.0 : 1.3) * (1.0 + scrollSpeed * 1.5);
       trainX += trainSpeed;
       if (trainX > w) {
         trainX = -320;
@@ -354,16 +368,21 @@ export default function IndiaAnimation() {
       const shipDropX = shipX + 78;
       const shipDropY = shipY - 52; // container height offset
 
+      const craneTrolleySpeed = 1.8 * speedMult;
+      const craneHookSpeed = 1.5 * speedMult;
+      const trolleySlideSpeed = 2.0 * speedMult;
+      const trolleySlideBackSpeed = 2.2 * speedMult;
+
       switch (loadStage) {
         case 0: // Lower hook to pick container from train wagon 1
           if (trainX >= 0 && trainX <= 140) { // wait for train to align
-            if (craneTrolleyX > trainPickupX) craneTrolleyX -= 1.8;
-            else if (craneTrolleyX < trainPickupX) craneTrolleyX += 1.8;
+            if (craneTrolleyX > trainPickupX) craneTrolleyX -= craneTrolleySpeed;
+            else if (craneTrolleyX < trainPickupX) craneTrolleyX += craneTrolleySpeed;
             
             // Lower hook
-            if (Math.abs(craneTrolleyX - trainPickupX) < 4) {
+            if (Math.abs(craneTrolleyX - trainPickupX) < 6) {
               if (craneHookY < tracksY - 26) {
-                craneHookY += 1.5;
+                craneHookY += craneHookSpeed;
               } else {
                 loadStage = 1;
               }
@@ -376,21 +395,21 @@ export default function IndiaAnimation() {
           break;
         case 2: // Lift container
           if (craneHookY > beamY + 15) {
-            craneHookY -= 1.5;
+            craneHookY -= craneHookSpeed;
           } else {
             loadStage = 3;
           }
           break;
         case 3: // Slide trolley horizontally towards the docked container ship
           if (craneTrolleyX < shipDropX) {
-            craneTrolleyX += 2.0;
+            craneTrolleyX += trolleySlideSpeed;
           } else {
             loadStage = 4;
           }
           break;
         case 4: // Lower container onto ship stack
           if (craneHookY < shipDropY) {
-            craneHookY += 1.5;
+            craneHookY += craneHookSpeed;
           } else {
             loadStage = 5;
           }
@@ -400,14 +419,14 @@ export default function IndiaAnimation() {
           break;
         case 6: // Lift hook back up
           if (craneHookY > beamY + 15) {
-            craneHookY -= 1.5;
+            craneHookY -= craneHookSpeed;
           } else {
             loadStage = 7;
           }
           break;
         case 7: // Slide crane trolley back to initial harbor zone
           if (craneTrolleyX > craneX) {
-            craneTrolleyX -= 2.2;
+            craneTrolleyX -= trolleySlideBackSpeed;
           } else {
             loadStage = 0; // restart cycle
           }
@@ -467,6 +486,9 @@ export default function IndiaAnimation() {
       if (container) {
         container.removeEventListener("mouseenter", handleMouseEnter);
         container.removeEventListener("mouseleave", handleMouseLeave);
+        container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchend", handleTouchEnd);
+        container.removeEventListener("touchcancel", handleTouchEnd);
       }
     };
   }, []);

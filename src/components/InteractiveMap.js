@@ -89,9 +89,47 @@ export default function InteractiveMap() {
       }
     };
 
+    const handleTouchStartOrMove = (e) => {
+      if (e.touches.length === 0) return;
+      isHovered.current = true;
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = touch.clientX - rect.left;
+      const mouseY = touch.clientY - rect.top;
+
+      const w = rect.width;
+      const h = rect.height;
+
+      let found = null;
+      ports.forEach((port) => {
+        const px = port.x * w;
+        const py = port.y * h;
+        const dist = Math.sqrt((mouseX - px) * (mouseX - px) + (mouseY - py) * (mouseY - py));
+        if (dist < 22) {
+          found = port;
+        }
+      });
+
+      if (found) {
+        setHoveredPort(found);
+        setTooltipPos({ x: found.x * w, y: found.y * h });
+      } else {
+        setHoveredPort(null);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isHovered.current = false;
+      setHoveredPort(null);
+    };
+
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
     container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("touchstart", handleTouchStartOrMove, { passive: true });
+    container.addEventListener("touchmove", handleTouchStartOrMove, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", handleTouchEnd, { passive: true });
 
     const animate = () => {
       time += 0.012;
@@ -120,7 +158,8 @@ export default function InteractiveMap() {
       }
 
       // 2. Draw connection routes
-      const speedMultiplier = isHovered.current ? 2.5 : 1.0;
+      const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+      const speedMultiplier = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
       routes.forEach((route) => {
         const origin = ports.find((p) => p.id === route.from);
         const dest = ports.find((p) => p.id === route.to);
@@ -227,6 +266,10 @@ export default function InteractiveMap() {
         container.removeEventListener("mouseenter", handleMouseEnter);
         container.removeEventListener("mouseleave", handleMouseLeave);
         container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener("touchstart", handleTouchStartOrMove);
+        container.removeEventListener("touchmove", handleTouchStartOrMove);
+        container.removeEventListener("touchend", handleTouchEnd);
+        container.removeEventListener("touchcancel", handleTouchEnd);
       }
     };
   }, [hoveredPort]);
