@@ -19,15 +19,15 @@ export default function ChinaAnimation() {
     let time = 0;
 
     const ports = [
-      { name: "Shanghai Port", x: 0.2, y: 0.35, pulse: 0 },
-      { name: "Ningbo Port", x: 0.22, y: 0.5, pulse: 0.3 },
-      { name: "Shenzhen Port", x: 0.15, y: 0.78, pulse: 0.6 }
+      { name: "Shanghai Port", x: 0.22, y: 0.32, coords: "31.2304° N, 121.4737° E", delay: "Clearance: 14h" },
+      { name: "Ningbo Port", x: 0.24, y: 0.52, coords: "29.8683° N, 121.5440° E", delay: "Clearance: 18h" },
+      { name: "Shenzhen Port", x: 0.14, y: 0.78, coords: "22.5431° N, 114.0579° E", delay: "Clearance: 11h" }
     ];
 
     const vessels = [
-      { port: "Shanghai Port", targetX: 0.9, targetY: 0.2, progress: 0.1, speed: 0.0035 },
-      { port: "Ningbo Port", targetX: 0.88, targetY: 0.5, progress: 0.4, speed: 0.003 },
-      { port: "Shenzhen Port", targetX: 0.85, targetY: 0.8, progress: 0.7, speed: 0.004 }
+      { port: "Shanghai Port", targetX: 0.9, targetY: 0.18, progress: 0.1, speed: 0.0028, color: "#C6A75E", sizeScale: 1.1 },
+      { port: "Ningbo Port", targetX: 0.88, targetY: 0.48, progress: 0.45, speed: 0.0024, color: "#5C6F8E", sizeScale: 1.0 },
+      { port: "Shenzhen Port", targetX: 0.82, targetY: 0.82, progress: 0.7, speed: 0.0033, color: "#1F2A44", sizeScale: 0.9 }
     ];
 
     const resize = () => {
@@ -55,43 +55,99 @@ export default function ChinaAnimation() {
     container.addEventListener("mouseleave", handleMouseLeave);
 
     const animate = () => {
-      time += 0.015;
+      time += 0.012;
       animationFrameId = requestAnimationFrame(animate);
 
-      const w = canvas.width / (window.devicePixelRatio || 1);
-      const h = canvas.height / (window.devicePixelRatio || 1);
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
 
       ctx.clearRect(0, 0, w, h);
 
-      // Draw Grid Backdrop
-      ctx.strokeStyle = "rgba(31, 42, 68, 0.03)";
+      // 1. Radar Screen Backdrop (Dark navy slate with grid)
+      ctx.fillStyle = "#0A101D"; // Cyber radar dark navy
+      ctx.fillRect(0, 0, w, h);
+
+      // Radar Concentric Range Rings
+      const rx = w * 0.48;
+      const ry = h * 0.5;
+      
+      ctx.strokeStyle = "rgba(198, 167, 94, 0.04)";
       ctx.lineWidth = 1;
-      for (let x = 0; x < w; x += 22) {
+      for (let r = 50; r < Math.max(w, h); r += 65) {
         ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
-        ctx.stroke();
-      }
-      for (let y = 0; y < h; y += 22) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
+        ctx.arc(rx, ry, r, 0, Math.PI * 2);
         ctx.stroke();
       }
 
-      // Draw stylized coast contour (Left column representing China coastline)
-      ctx.fillStyle = "rgba(31, 42, 68, 0.04)";
+      // Compass Degree ticks
+      ctx.strokeStyle = "rgba(198, 167, 94, 0.08)";
       ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(w * 0.18, 0);
-      ctx.quadraticCurveTo(w * 0.22, h * 0.25, w * 0.16, h * 0.45);
-      ctx.quadraticCurveTo(w * 0.25, h * 0.65, w * 0.12, h * 0.85);
-      ctx.lineTo(w * 0.15, h);
-      ctx.lineTo(0, h);
+      for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 12) {
+        const startX = rx + Math.cos(angle) * (h * 0.45);
+        const startY = ry + Math.sin(angle) * (h * 0.45);
+        const endX = rx + Math.cos(angle) * (h * 0.47);
+        const endY = ry + Math.sin(angle) * (h * 0.47);
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+      }
+      ctx.stroke();
+
+      // Dotted Grid backdrop lines
+      ctx.strokeStyle = "rgba(92, 111, 142, 0.03)";
+      ctx.lineWidth = 1.0;
+      ctx.setLineDash([2, 8]);
+      for (let gx = 0; gx < w; gx += 30) {
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, h);
+        ctx.stroke();
+      }
+      for (let gy = 0; gy < h; gy += 30) {
+        ctx.beginPath();
+        ctx.moveTo(0, gy);
+        ctx.lineTo(w, gy);
+        ctx.stroke();
+      }
+      ctx.setLineDash([]); // reset
+
+      // 2. Draw Stylized High-Tech Coastline Contour (East China coast)
+      ctx.fillStyle = "rgba(31, 42, 68, 0.35)"; // Landmass color fill
+      ctx.strokeStyle = "rgba(198, 167, 94, 0.2)"; // Coast edge glow line
+      ctx.lineWidth = 2.0;
+      ctx.beginPath();
+      ctx.moveTo(-10, -10);
+      ctx.lineTo(w * 0.20, -10);
+      ctx.quadraticCurveTo(w * 0.23, h * 0.22, w * 0.17, h * 0.42);
+      ctx.quadraticCurveTo(w * 0.26, h * 0.62, w * 0.13, h * 0.76);
+      ctx.quadraticCurveTo(w * 0.16, h * 0.88, w * 0.08, h + 10);
+      ctx.lineTo(-10, h + 10);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // 3. Draw Radar Sweep Line (Rotating beam)
+      const sweepAngle = time * 0.9;
+      const sweepRadius = Math.max(w, h);
+      const sweepGrad = ctx.createRadialGradient(rx, ry, 0, rx, ry, sweepRadius);
+      sweepGrad.addColorStop(0, "rgba(198, 167, 94, 0.08)");
+      sweepGrad.addColorStop(1, "rgba(198, 167, 94, 0)");
+      
+      ctx.fillStyle = sweepGrad;
+      ctx.beginPath();
+      ctx.moveTo(rx, ry);
+      ctx.arc(rx, ry, sweepRadius, sweepAngle - 0.25, sweepAngle);
       ctx.closePath();
       ctx.fill();
 
-      // Draw shipping lines (sea lanes)
+      // Sweep edge line
+      ctx.strokeStyle = "rgba(198, 167, 94, 0.22)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(rx, ry);
+      ctx.lineTo(rx + Math.cos(sweepAngle) * (h * 0.45), ry + Math.sin(sweepAngle) * (h * 0.45));
+      ctx.stroke();
+
+      // 4. Update and Draw Cargo Vessel Fleets
       const multiplier = isHovered.current ? 2.5 : 1.0;
       vessels.forEach((vessel) => {
         const originPort = ports.find((p) => p.name === vessel.port);
@@ -102,82 +158,96 @@ export default function ChinaAnimation() {
         const endX = vessel.targetX * w;
         const endY = vessel.targetY * h;
 
-        // Curve control point
-        const ctrlX = (startX + endX) / 2 + 30;
-        const ctrlY = (startY + endY) / 2 - 40;
+        // Bezier curve controls for shipping route lanes
+        const ctrlX = (startX + endX) / 2 + 45;
+        const ctrlY = (startY + endY) / 2 - 30;
 
-        // Draw dotted path curve
-        ctx.strokeStyle = "rgba(92, 111, 142, 0.2)";
-        ctx.lineWidth = 2;
+        // Draw dotted path shipping lane route
+        ctx.strokeStyle = "rgba(198, 167, 94, 0.22)";
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 6]);
         ctx.beginPath();
         ctx.moveTo(startX, startY);
         ctx.quadraticCurveTo(ctrlX, ctrlY, endX, endY);
         ctx.stroke();
+        ctx.setLineDash([]); // reset
 
         // Update shipping progress
         vessel.progress = (vessel.progress + vessel.speed * multiplier) % 1.0;
 
-        // Quadratic Bezier interpolation for vessel node position
+        // Cubic/quadratic interpolation for cargo ship coordinates
         const t = vessel.progress;
         const px = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * ctrlX + t * t * endX;
         const py = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * ctrlY + t * t * endY;
 
-        // Draw shipping container ship node (Gold)
-        ctx.fillStyle = "#C6A75E";
-        ctx.shadowColor = "#C6A75E";
-        ctx.shadowBlur = 5;
-        ctx.beginPath();
-        ctx.arc(px, py, 4.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        // Draw actual realistic 2D silhouette container ship vector instead of a dot
+        drawVectorShip(ctx, px, py, vessel.color, vessel.sizeScale);
 
-        // Draw destination coordinates indicator (Right column)
-        ctx.fillStyle = "rgba(31, 42, 68, 0.5)";
+        // Draw destination beacon indicators
+        ctx.fillStyle = "rgba(92, 111, 142, 0.5)";
         ctx.beginPath();
         ctx.arc(endX, endY, 3, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.font = "italic 9px sans-serif";
-        ctx.fillStyle = "#5C6F8E";
-        ctx.fillText("Global Dispatch", endX - 70, endY - 6);
+        ctx.font = "italic 8px sans-serif";
+        ctx.fillStyle = "rgba(226, 232, 240, 0.5)";
+        ctx.fillText("Intercontinental Lane", endX - 80, endY - 6);
       });
 
-      // Draw Ports
+      // 5. Draw Ports with high-contrast text and glowing rings
       ports.forEach((port) => {
         const px = port.x * w;
         const py = port.y * h;
 
-        // Pulsing rings from port
-        port.pulse = (port.pulse + 0.012) % 1.0;
-        const r = 4 + port.pulse * 18;
-        const alpha = 1.0 - port.pulse;
+        // Pulsing radar rings
+        port.pulseRate = ((port.pulseRate || 0) + 0.015) % 1.0;
+        const r = 5 + port.pulseRate * 20;
+        const alpha = 1.0 - port.pulseRate;
         ctx.strokeStyle = `rgba(198, 167, 94, ${alpha})`;
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 1.25;
         ctx.beginPath();
         ctx.arc(px, py, r, 0, Math.PI * 2);
         ctx.stroke();
 
-        // Port dot
-        ctx.fillStyle = "#1F2A44";
+        // Port node core dot
+        ctx.fillStyle = "#0A101D";
         ctx.beginPath();
         ctx.arc(px, py, 6, 0, Math.PI * 2);
         ctx.fill();
         ctx.strokeStyle = "#C6A75E";
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 2.0;
         ctx.stroke();
+        
+        ctx.fillStyle = "#C6A75E";
+        ctx.beginPath();
+        ctx.arc(px, py, 2.0, 0, Math.PI * 2);
+        ctx.fill();
 
-        // Port Text Label
+        // Port Labels (Navy/white outline)
         ctx.font = "bold 9px 'Inter', sans-serif";
-        ctx.fillStyle = "#1F2A44";
         ctx.textAlign = "left";
-        ctx.fillText(port.name, px + 10, py + 3);
+        
+        ctx.strokeStyle = "#0A101D";
+        ctx.lineWidth = 3.0;
+        ctx.lineJoin = "round";
+        ctx.strokeText(port.name, px + 12, py - 4);
+        ctx.strokeText(port.coords, px + 12, py + 6);
+        ctx.strokeText(port.delay, px + 12, py + 15);
+
+        ctx.fillStyle = "#E2E8F0"; // pure white text
+        ctx.fillText(port.name, px + 12, py - 4);
+        ctx.fillStyle = "#5C6F8E"; // Coordinates slate
+        ctx.fillText(port.coords, px + 12, py + 6);
+        ctx.fillStyle = "#C6A75E"; // Delay Gold
+        ctx.fillText(port.delay, px + 12, py + 15);
       });
 
-      // Coast name tag
-      ctx.fillStyle = "#1F2A44";
-      ctx.font = "bold 10px 'Inter', sans-serif";
+      // Title/Coordinate overlay
+      ctx.fillStyle = "#E8DCC8";
+      ctx.font = "bold 9px 'Inter', sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText("EAST CHINA SEA TRADE CORRIDORS", w * 0.5, h - 25);
+      ctx.letterSpacing = "2px";
+      ctx.fillText("EAST CHINA SEA MARITIME HUB MONITOR", w * 0.5, h - 18);
     };
 
     animate();
@@ -192,6 +262,35 @@ export default function ChinaAnimation() {
     };
   }, []);
 
+  // Helper to draw a cargo ship shape carrying containers
+  const drawVectorShip = (ctx, sx, sy, color, scale) => {
+    const w = 24 * scale;
+    const h = 8 * scale;
+    
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(sx - w / 2, sy + h / 2);
+    ctx.lineTo(sx + w / 2 - 4, sy + h / 2);
+    ctx.lineTo(sx + w / 2, sy - h / 4); // pointed bow
+    ctx.lineTo(sx - w / 2 + 3, sy - h / 2); // stern
+    ctx.closePath();
+    ctx.fill();
+    
+    // Draw tiny container box stacks on the ship deck
+    ctx.fillStyle = "#C6A75E";
+    ctx.fillRect(sx - w / 4, sy - h / 2 - 1.5, 5, 5);
+    ctx.fillStyle = "#5C6F8E";
+    ctx.fillRect(sx - w / 4 + 6, sy - h / 2 - 1.5, 4, 5);
+    ctx.fillStyle = "#E8DCC8";
+    ctx.fillRect(sx - w / 4 + 11, sy - h / 2 - 1.5, 5, 5);
+
+    // Glowing coordinate dot on the vessel
+    ctx.fillStyle = "rgba(198, 167, 94, 0.95)";
+    ctx.beginPath();
+    ctx.arc(sx + w / 3, sy, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  };
+
   return (
     <div
       ref={containerRef}
@@ -203,9 +302,40 @@ export default function ChinaAnimation() {
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        padding: 0
       }}
     >
+      {/* HUD Telemetry Overlay */}
+      <div style={{
+        position: "absolute",
+        top: "1rem",
+        left: "1rem",
+        fontFamily: "monospace",
+        fontSize: "0.65rem",
+        color: "#C6A75E",
+        background: "rgba(10, 15, 29, 0.75)",
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+        padding: "0.5rem 0.75rem",
+        borderRadius: "4px",
+        border: "1px solid rgba(198, 167, 94, 0.2)",
+        pointerEvents: "none",
+        zIndex: 5,
+        letterSpacing: "1px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.25rem",
+        textAlign: "left"
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+          <span style={{ display: "inline-block", width: "5px", height: "5px", borderRadius: "50%", background: "#10B981", boxShadow: "0 0 6px #10B981", animation: "pulse 2s infinite" }}></span>
+          <span>TELEMETRY ONLINE</span>
+        </div>
+        <div>DESK: EAST CHINA SEA</div>
+        <div>RADAR SCANNING: ACTIVE // VESSEL COUNT: 88</div>
+      </div>
+
       <canvas
         ref={canvasRef}
         style={{

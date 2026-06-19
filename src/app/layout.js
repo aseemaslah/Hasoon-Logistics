@@ -16,21 +16,44 @@ export const metadata = {
     "china to dubai shipping agent",
     "india to dubai logistics",
     "hasoon logistics",
-    "global supply chain solutions"
+    "global supply chain solutions",
+    "b2b freight forwarding",
+    "JAFZA customs broker",
+    "SABER compliance",
+    "FASAH broker",
+    "JNPT custom clearing CHA",
+    "pharma-grade cold chain storage"
   ],
   alternates: {
     canonical: "https://hasoonlogistics.com/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   openGraph: {
     type: "website",
     url: "https://hasoonlogistics.com/",
     title: "Best Logistics Company & Freight Forwarding | Hasoon Logistics",
-    description: "Experience global supply chain precision with Hasoon Logistics, the leading B2B freight forwarder and customs brokerage operator.",
+    description: "Experience global supply chain precision with Hasoon Logistics, the leading B2B freight forwarder and customs brokerage operator across UAE, Saudi Arabia, India, and China.",
     images: [
       {
-        url: "https://hasoonlogistics.com/images/logo.svg",
+        url: "https://hasoonlogistics.com/images/logo.png",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Logistics Company & Freight Forwarding | Hasoon Logistics",
+    description: "Experience global supply chain precision with Hasoon Logistics, the leading B2B freight forwarder and customs brokerage operator.",
+    images: ["https://hasoonlogistics.com/images/logo.png"],
   },
   icons: {
     icon: "/favicon.svg",

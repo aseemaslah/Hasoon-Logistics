@@ -16,7 +16,12 @@ export const metadata = {
     "china export customs broker",
     "shipping company china to dubai",
     "container consolidation china",
-    "hasoon logistics"
+    "hasoon logistics",
+    "Shenzhen Yantian port container shipping",
+    "Ningbo Zhoushan cargo forwarding",
+    "Guangzhou air cargo logistics",
+    "LCL consolidation warehouse China",
+    "factory to port logistics China"
   ],
   alternates: {
     canonical: "https://hasoonlogistics.com/china",
@@ -58,7 +63,7 @@ export default function ChinaRegion() {
               <span className="hero-subtitle">Industrial Export Infrastructure</span>
               <h1>Logistics & Shipping Services in China</h1>
               <p>
-                As a leading shipping agent, Hasoon Logistics coordinates B2B container consolidation, port drayage, and export customs clearance from China to major international hubs.
+                As a leading china to dubai shipping agent and shipping company china to dubai, Hasoon Logistics coordinates B2B container consolidation china services, factory to port logistics China cargo hauling, and china export customs broker clearance.
               </p>
             </div>
           </div>
@@ -71,7 +76,7 @@ export default function ChinaRegion() {
                 <span className="hero-subtitle">Consolidation Networks</span>
                 <h2>Shanghai, Ningbo & Shenzhen Gateways</h2>
                 <p>
-                  We coordinate sea containers from China's primary manufacturing ports (Shanghai, Ningbo, Shenzhen, Guangzhou, Qingdao) with direct allocations on major shipping lines.
+                  We coordinate sea containers from China's primary manufacturing ports (including Shanghai export shipping agent depots, Ningbo Zhoushan cargo forwarding hubs, Shenzhen Yantian port container shipping docks, and Guangzhou air cargo logistics centers) with direct allocations on major shipping lines.
                 </p>
                 <ul className="service-list">
                   <li>

@@ -8,6 +8,7 @@ import BackgroundShader from "@/components/BackgroundShader";
 import InteractiveShip from "@/components/InteractiveShip";
 import InteractiveTruck from "@/components/InteractiveTruck";
 import StatCounter from "@/components/StatCounter";
+import InteractiveMap from "@/components/InteractiveMap";
 
 export const metadata = {
   title: "Best Logistics Company & Freight Forwarding in Dubai - Hasoon Logistics",
@@ -23,8 +24,18 @@ export const metadata = {
     "china to dubai shipping agent",
     "air cargo services dubai",
     "overland trucking gcc",
-    "hasoon logistics"
+    "hasoon logistics",
+    "JAFZA customs clearance agent",
+    "FASAH customs clearance Riyadh",
+    "JNPT custom clearing agent Mumbai",
+    "LCL cargo consolidation Ningbo",
+    "pharma warehouse Jebel Ali",
+    "CEPA tariff shipping India"
   ],
+  robots: {
+    index: true,
+    follow: true,
+  },
   alternates: {
     canonical: "https://hasoonlogistics.com/",
   },
@@ -79,7 +90,7 @@ export default function Home() {
         {/* Section 1: Hero Showcase */}
         <section className="hero" id="home" aria-label="Hasoon Logistics Global Network Banner">
           <InteractiveShip />
-          
+
           <div className="container hero-grid">
             <div className="hero-content scroll-reveal scroll-revealed">
               <span className="hero-subtitle">Intercontinental Precision</span>
@@ -89,7 +100,7 @@ export default function Home() {
               </p>
               <div className="hero-actions">
                 <a href="#contact" className="btn-glass-3d" id="hero-btn-quote">
-                  Request Private Quote
+                  Connect Now
                 </a>
                 <a href="#services" className="btn-glass-3d btn-secondary" id="hero-btn-services">
                   Explore Services
@@ -128,7 +139,7 @@ export default function Home() {
                   At Hasoon Logistics, we have built our reputation as the best logistics company in Dubai by treating cargo not merely as commodities, but as our clients&rsquo; reputation, hard work, and business security. Headquartered in Dubai, the absolute crossroads of international commerce, we connect critical trade lanes between East and West as a trusted shipping and customs clearance agent.
                 </p>
                 <p>
-                  Guided by logistics veterans Aseem Aslah Hasoon and our executive compliance desk, we act as a leading international freight forwarder, supporting large-scale industrial cargo movements, customs brokerage clearance, and supply chain logistics with complete safety guarantees and strict biometrics.
+                  Guided by logistics veterans and our executive compliance desk, we act as a leading international freight forwarder, supporting large-scale industrial cargo movements, customs brokerage clearance, and supply chain logistics with complete safety guarantees and strict biometrics.
                 </p>
               </div>
 
@@ -168,39 +179,123 @@ export default function Home() {
         {/* Section 3: Product & Services */}
         <section className="section-padding" id="services" aria-label="Our Services">
           <div className="container">
-            <div className="services-split" style={{ direction: "rtl" }}>
-              <div className="scroll-reveal" style={{ direction: "ltr" }}>
-                <span className="hero-subtitle">Capabilities</span>
-                <h2>Our Freight Forwarding & Cargo Services</h2>
-                <p>
-                  Our shipping capabilities span international air freight forwarding, global sea freight shipping, secure overland road transportation, and specialized 3PL customs brokerage, optimized dynamically by modern tracking systems.
-                </p>
-                <ul className="service-list">
-                  <li>
-                    <svg viewBox="0 0 24 24">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                    </svg>
-                    <span>Priority Air Cargo: 12-36 hours express global air freight forwarding</span>
-                  </li>
-                  <li>
-                    <svg viewBox="0 0 24 24">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                    </svg>
-                    <span>Sea Freight Cargo: High capacity ocean freight shipping &amp; FCL/LCL spaces</span>
-                  </li>
-                  <li>
-                    <svg viewBox="0 0 24 24">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                    </svg>
-                    <span>Cold Chain Logistics: &plusmn;0.2&deg;C temperature-controlled 3PL warehouse storage</span>
-                  </li>
-                </ul>
-              </div>
+            <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto 4rem auto" }} className="scroll-reveal">
+              <span className="hero-subtitle">Capabilities</span>
+              <h2>Our Freight Forwarding &amp; Cargo Services</h2>
+              <p>
+                Our shipping capabilities span international air freight forwarding, global sea freight shipping, secure overland road transportation, and specialized 3PL customs brokerage, optimized dynamically by modern tracking systems.
+              </p>
+            </div>
 
-              {/* 2D Cargo Truck Interactive Container */}
-              <div className="services-visual-panel scroll-reveal" style={{ direction: "ltr" }}>
-                <InteractiveTruck />
-              </div>
+            {/* Grid of 6 interactive service cards */}
+            <div className="luxury-card-grid">
+              {/* Card 1: Freight Forwarding */}
+              <a href="/services/freight-forwarding" className="glass-panel scroll-reveal gateway-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                <div>
+                  <div className="info-card-icon" style={{ marginBottom: "1.5rem" }}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                      <path d="M2 12h20" />
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: "0 0 0.75rem 0" }}>Freight Forwarding</h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                    Multi-modal B2B cargo logistics across global trade routes managed securely by WCO AEO compliance officers.
+                  </p>
+                </div>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Service →</span>
+              </a>
+
+              {/* Card 2: Priority Air Cargo */}
+              <a href="/services/air-freight" className="glass-panel scroll-reveal gateway-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                <div>
+                  <div className="info-card-icon" style={{ marginBottom: "1.5rem" }}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                      <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: "0 0 0.75rem 0" }}>Priority Air Cargo</h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                    Time-critical air freight forwarding and private cargo charter flights with 12 to 36 hours transit.
+                  </p>
+                </div>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Service →</span>
+              </a>
+
+              {/* Card 3: Ocean Freight */}
+              <a href="/services/sea-freight" className="glass-panel scroll-reveal gateway-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                <div>
+                  <div className="info-card-icon" style={{ marginBottom: "1.5rem" }}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 21h20M19.3 14.8C21.1 13.5 22 11.7 22 9.5c0-3.6-3.3-6.5-7.5-6.5-3.1 0-5.8 1.6-6.9 4-1.2-.6-2.5-.9-3.9-.9C2.1 6.1 0 8.5 0 11.5c0 1.8.8 3.4 2.1 4.5" />
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: "0 0 0.75rem 0" }}>Ocean Freight</h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                    High-capacity sea freight shipping and booking networks for Full Container (FCL) and LCL consol.
+                  </p>
+                </div>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Service →</span>
+              </a>
+
+              {/* Card 4: Overland Trucking */}
+              <a href="/services/road-transportation" className="glass-panel scroll-reveal gateway-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                <div>
+                  <div className="info-card-icon" style={{ marginBottom: "1.5rem" }}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="1" y="3" width="15" height="13" />
+                      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                      <circle cx="5.5" cy="18.5" r="2.5" />
+                      <circle cx="18.5" cy="18.5" r="2.5" />
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: "0 0 0.75rem 0" }}>Overland Trucking</h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                    Cross-border GCC road freight forwarding and temperature-sensitive container linehauls.
+                  </p>
+                </div>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Service →</span>
+              </a>
+
+              {/* Card 5: Cold Chain Warehousing */}
+              <a href="/services/warehousing" className="glass-panel scroll-reveal gateway-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                <div>
+                  <div className="info-card-icon" style={{ marginBottom: "1.5rem" }}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: "0 0 0.75rem 0" }}>Cold Chain Warehousing</h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                    GDP pharma-grade cold chains and climate-controlled storage vaults with absolute precision.
+                  </p>
+                </div>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Service →</span>
+              </a>
+
+              {/* Card 6: Customs Brokerage */}
+              <a href="/services/customs-clearance" className="glass-panel scroll-reveal gateway-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                <div>
+                  <div className="info-card-icon" style={{ marginBottom: "1.5rem" }}>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: "0 0 0.75rem 0" }}>Customs Brokerage</h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                    Certified border agency brokerage coordinating FASAH/SABER compliance and duty drawdowns.
+                  </p>
+                </div>
+                <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Service →</span>
+              </a>
+            </div>
+
+            {/* 2D Cargo Truck Interactive Container - Full Width Panel */}
+            <div className="services-visual-panel scroll-reveal" style={{ marginTop: "4rem", direction: "ltr" }}>
+              <InteractiveTruck />
             </div>
 
             {/* Global network counter numbers */}
@@ -235,7 +330,7 @@ export default function Home() {
                 We operate directly inside primary industrial trade gateways, establishing complete compliance and high-performance shipping corridors for corporate consignments.
               </p>
             </div>
- 
+
             <div className="mission-vision-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "2rem" }}>
               {/* Card 1: UAE */}
               <a href="/uae" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit", transition: "transform 0.3s ease, border-color 0.3s ease" }}>
@@ -246,7 +341,7 @@ export default function Home() {
                 </p>
                 <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Dubai Gateway →</span>
               </a>
- 
+
               {/* Card 2: Saudi Arabia */}
               <a href="/saudi-arabia" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit" }}>
                 <span className="text-gold" style={{ fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>Olaya Riyadh</span>
@@ -256,7 +351,7 @@ export default function Home() {
                 </p>
                 <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore Saudi Gateway →</span>
               </a>
- 
+
               {/* Card 3: India */}
               <a href="/india" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit" }}>
                 <span className="text-gold" style={{ fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>JNPT Mumbai</span>
@@ -266,7 +361,7 @@ export default function Home() {
                 </p>
                 <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore India Gateway →</span>
               </a>
- 
+
               {/* Card 4: China */}
               <a href="/china" className="glass-panel scroll-reveal gateway-card" style={{ display: "block", textDecoration: "none", color: "inherit" }}>
                 <span className="text-gold" style={{ fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>Shanghai & Shenzhen</span>
@@ -277,19 +372,21 @@ export default function Home() {
                 <span className="text-gold" style={{ fontSize: "0.9rem", fontWeight: 700 }}>Explore China Gateway →</span>
               </a>
             </div>
+          </div>
+        </section>
 
-            {/* Direct service route links */}
-            <div style={{ marginTop: "4rem", textAlign: "center" }} className="scroll-reveal">
-              <span className="hero-subtitle">Our Capabilities</span>
-              <h3 style={{ marginBottom: "2rem" }}>Dedicated Service Operations</h3>
-              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem" }}>
-                <a href="/services/freight-forwarding" className="btn-glass-3d btn-secondary" style={{ padding: "0.75rem 1.5rem", fontSize: "0.85rem" }}>Freight Forwarding</a>
-                <a href="/services/air-freight" className="btn-glass-3d btn-secondary" style={{ padding: "0.75rem 1.5rem", fontSize: "0.85rem" }}>Priority Air Cargo</a>
-                <a href="/services/sea-freight" className="btn-glass-3d btn-secondary" style={{ padding: "0.75rem 1.5rem", fontSize: "0.85rem" }}>Ocean Freight</a>
-                <a href="/services/road-transportation" className="btn-glass-3d btn-secondary" style={{ padding: "0.75rem 1.5rem", fontSize: "0.85rem" }}>Overland Trucking</a>
-                <a href="/services/warehousing" className="btn-glass-3d btn-secondary" style={{ padding: "0.75rem 1.5rem", fontSize: "0.85rem" }}>GDP Climate Warehousing</a>
-                <a href="/services/customs-clearance" className="btn-glass-3d btn-secondary" style={{ padding: "0.75rem 1.5rem", fontSize: "0.85rem" }}>Customs Brokerage</a>
-              </div>
+        {/* Section 4.5: Global Routing Map */}
+        <section className="section-padding" id="network" aria-label="Global Routing Map &amp; Shipping Arcs">
+          <div className="container">
+            <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto 4rem auto" }} className="scroll-reveal">
+              <span className="hero-subtitle">Route Telemetry</span>
+              <h2>Interactive Global Route &amp; Port Connectivity</h2>
+              <p>
+                We connect manufacturing and trade corridors across Dubai, Saudi Arabia, India, and China. Hover over port nodes to see localized clearance times and operations details.
+              </p>
+            </div>
+            <div className="scroll-reveal">
+              <InteractiveMap />
             </div>
           </div>
         </section>

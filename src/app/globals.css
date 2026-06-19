@@ -66,9 +66,12 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: -2;
-  filter: blur(80px);
-  transform: scale(1.05); /* Avoid white edges */
+  filter: blur(40px); /* Optimized from 80px for performance */
+  transform: scale(1.05) translateZ(0); /* Forcing hardware GPU acceleration on iOS WebKit */
+  -webkit-transform: scale(1.05) translateZ(0);
   pointer-events: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Typography & Headers */
@@ -236,6 +239,120 @@ header.scrolled .nav-glass-bar {
   box-shadow: 0 8px 0 var(--color-accent-gold), 0 12px 20px rgba(31, 42, 68, 0.3);
 }
 
+/* Header Dropdown Menus */
+.nav-item-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  background: rgba(15, 23, 42, 0.94); /* Deep navy obsidian slate */
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(198, 167, 94, 0.25);
+  border-radius: var(--border-radius-md);
+  padding: 1.25rem;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  min-width: 320px;
+  z-index: 1010;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.3s ease;
+}
+
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.nav-item-dropdown:hover .nav-dropdown-trigger svg {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu.wide-dropdown {
+  min-width: 580px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.dropdown-item {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.75rem 1rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 8px !important;
+  transition: all 0.25s ease !important;
+  transform: none !important;
+  text-align: left;
+  color: #E2E8F0 !important;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--color-accent-gold) !important;
+  padding-left: 1.25rem !important;
+}
+
+.dropdown-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(198, 167, 94, 0.08);
+  border: 1px solid rgba(198, 167, 94, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-gold);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover .dropdown-item-icon {
+  background: var(--color-accent-gold);
+  color: #1F2A44;
+}
+
+.dropdown-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.dropdown-item-title {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #F8FAFC;
+  line-height: 1.2;
+}
+
+.dropdown-item-desc {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: #94A3B8;
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
 /* logo-3d-icon container styles */
 .logo-3d-icon {
   width: 44px;
@@ -291,6 +408,12 @@ header.scrolled .nav-glass-bar {
   border: none;
   cursor: pointer;
   z-index: 1100;
+  width: 44px;
+  height: 44px;
+  padding: 15px 11px;
+  box-sizing: border-box;
+  position: relative;
+  pointer-events: auto !important;
 }
 
 .mobile-nav-toggle span {
@@ -300,6 +423,11 @@ header.scrolled .nav-glass-bar {
   margin-bottom: 4px;
   background-color: var(--color-text-primary);
   transition: var(--transition-smooth);
+  pointer-events: none; /* Prevents WebKit click events bug by delegating taps to button */
+}
+
+.mobile-nav-toggle span:last-child {
+  margin-bottom: 0;
 }
 
 /* Premium Tactile 3D Glass Buttons */
@@ -427,7 +555,7 @@ header.scrolled .nav-glass-bar {
   transform: translateY(0);
 }
 
-@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+@media (max-width: 1024px), (prefers-reduced-motion: reduce) {
   .scroll-reveal {
     opacity: 1 !important;
     transform: none !important;
@@ -523,6 +651,7 @@ header.scrolled .nav-glass-bar {
   text-align: center;
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-border-glass);
   border-radius: var(--border-radius-md);
   padding: 3.5rem 2rem;
@@ -658,6 +787,7 @@ textarea.form-input {
   font-size: 0.9375rem;
   color: var(--color-text-primary);
   font-weight: 500;
+  word-break: break-word;
 }
 
 /* Floating WhatsApp Widget */
@@ -675,6 +805,7 @@ textarea.form-input {
   background: rgba(37, 211, 102, 0.15);
   border: 1px solid rgba(37, 211, 102, 0.4);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: var(--shadow-organic);
   cursor: pointer;
   transition: var(--transition-smooth);
@@ -773,6 +904,7 @@ footer {
   height: 100vh;
   background: rgba(31, 42, 68, 0.4);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 1500;
   opacity: 0;
   pointer-events: none;
@@ -831,7 +963,7 @@ footer {
   }
   
   .mobile-nav-toggle {
-    display: block;
+    display: block !important;
   }
   
   header {
@@ -855,6 +987,15 @@ footer {
   .form-group-row {
     grid-template-columns: 1fr;
     gap: 1.75rem;
+  }
+  
+  .glass-panel {
+    padding: 1.5rem;
+  }
+  
+  .info-card {
+    padding: 1.25rem;
+    gap: 1rem;
   }
 }
 
@@ -905,6 +1046,7 @@ footer {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255, 255, 255, 0.6);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(31, 42, 68, 0.1);
@@ -1123,4 +1265,81 @@ footer {
   flex-wrap: wrap;
   gap: 1.5rem;
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.antigravity-footer-socials .social-icon:hover {
+  background: var(--color-accent-gold) !important;
+  color: #1F2A44 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(198, 167, 94, 0.35);
+}
+
+/* Global Network Map styling */
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(31, 42, 68, 0.1);
+  overflow: hidden;
+  background: #d0e1f9 url('/images/world-map-bg.png') no-repeat center center;
+  background-size: cover;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), var(--shadow-organic);
+}
+
+.map-tooltip {
+  position: absolute;
+  background: rgba(31, 42, 68, 0.75);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(31, 42, 68, 0.12);
+  border-bottom: 1px solid rgba(31, 42, 68, 0.15);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-organic-hover);
+  pointer-events: none;
+  z-index: 100;
+  max-width: 280px;
+  transform: translate(-50%, -120%);
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.map-tooltip.active {
+  opacity: 1;
+}
+
+.map-tooltip h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent-gold);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.map-tooltip p {
+  font-size: 0.8rem;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
 

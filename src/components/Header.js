@@ -12,6 +12,21 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Modal States
+  const [trackingModalOpen, setTrackingModalOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+
+  // Tracking Form States
+  const [trackingId, setTrackingId] = useState("");
+  const [trackingStatus, setTrackingStatus] = useState("idle"); // idle, loading, result
+  const [trackingError, setTrackingError] = useState("");
+
+  // Login Form States
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPasscode, setLoginPasscode] = useState("");
+  const [loginStatus, setLoginStatus] = useState("idle"); // idle, authenticating, error
+  const [loginMessage, setLoginMessage] = useState("");
+
   // 1. Scroll and Active Section Spying
   useEffect(() => {
     const handleScroll = () => {
@@ -39,9 +54,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
 
-  // 2. Global Body Scroll Prevention when mobile menu is open
+  // 2. Prevent scroll when drawers/modals are active
   useEffect(() => {
-    if (mobileMenuOpen) {
+    const modalActive = mobileMenuOpen || trackingModalOpen || loginModalOpen;
+    if (modalActive) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -49,10 +65,39 @@ export default function Header() {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, trackingModalOpen, loginModalOpen]);
 
   const getLink = (hash) => {
     return isHome ? `#${hash}` : `/#${hash}`;
+  };
+
+  const handleTrackingQuery = (e) => {
+    e.preventDefault();
+    if (!trackingId.trim()) {
+      setTrackingError("Please enter a consignment ID.");
+      return;
+    }
+    setTrackingError("");
+    setTrackingStatus("loading");
+
+    setTimeout(() => {
+      setTrackingStatus("result");
+    }, 1800);
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    if (!loginEmail.trim() || !loginPasscode.trim()) {
+      setLoginMessage("Please complete all credential fields.");
+      return;
+    }
+    setLoginMessage("");
+    setLoginStatus("authenticating");
+
+    setTimeout(() => {
+      setLoginStatus("error");
+      setLoginMessage("ACCESS DENIED: Multi-factor biometric key required. Secure console session cannot be established. Please contact your Hasoon account desk.");
+    }, 1500);
   };
 
   return (
@@ -77,15 +122,189 @@ export default function Header() {
                 <li className={activeSection === "home" && isHome ? "active" : ""}>
                   <a href={getLink("home")} id="nav-home">Home</a>
                 </li>
-                <li className={activeSection === "about" && isHome ? "active" : ""}>
-                  <a href={getLink("about")} id="nav-about">About</a>
+
+                {/* Company Dropdown */}
+                <li className="nav-item-dropdown">
+                  <a href="#" className="nav-dropdown-trigger" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }} onClick={(e) => e.preventDefault()}>
+                    Company
+                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="3" style={{ transition: "transform 0.3s ease" }}>
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </a>
+                  <div className="dropdown-menu">
+                    <a href={getLink("about")} className="dropdown-item">
+                      <div className="dropdown-item-icon">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                          <path d="M12 16v-4" />
+                          <path d="M12 8h.01" />
+                        </svg>
+                      </div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Corporate Legacy</span>
+                        <span className="dropdown-item-desc">Learn about our heritage as Dubai's leading elite logistics operator.</span>
+                      </div>
+                    </a>
+                    <a href={getLink("mission-vision")} className="dropdown-item">
+                      <div className="dropdown-item-icon">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10" />
+                          <circle cx="12" cy="12" r="6" />
+                          <circle cx="12" cy="12" r="2" />
+                        </svg>
+                      </div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Mission Operations</span>
+                        <span className="dropdown-item-desc">Explore our horizon strategies and green logistics roadmap.</span>
+                      </div>
+                    </a>
+                  </div>
                 </li>
-                <li className={activeSection === "services" && isHome ? "active" : ""}>
-                  <a href={getLink("services")} id="nav-services">Services</a>
+
+                {/* Services Dropdown */}
+                <li className="nav-item-dropdown">
+                  <a href="#" className="nav-dropdown-trigger" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }} onClick={(e) => e.preventDefault()}>
+                    Services
+                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="3" style={{ transition: "transform 0.3s ease" }}>
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </a>
+                  <div className="dropdown-menu wide-dropdown">
+                    <a href="/services/freight-forwarding" className="dropdown-item">
+                      <div className="dropdown-item-icon">F</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Freight Forwarding</span>
+                        <span className="dropdown-item-desc">Multi-modal global routes.</span>
+                      </div>
+                    </a>
+                    <a href="/services/air-freight" className="dropdown-item">
+                      <div className="dropdown-item-icon">A</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Priority Air Cargo</span>
+                        <span className="dropdown-item-desc">Express global charters.</span>
+                      </div>
+                    </a>
+                    <a href="/services/sea-freight" className="dropdown-item">
+                      <div className="dropdown-item-icon">S</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Ocean Freight</span>
+                        <span className="dropdown-item-desc">High-capacity sea shipping.</span>
+                      </div>
+                    </a>
+                    <a href="/services/road-transportation" className="dropdown-item">
+                      <div className="dropdown-item-icon">R</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Overland Trucking</span>
+                        <span className="dropdown-item-desc">GCC land linehauls.</span>
+                      </div>
+                    </a>
+                    <a href="/services/warehousing" className="dropdown-item">
+                      <div className="dropdown-item-icon">W</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Cold Chain Storage</span>
+                        <span className="dropdown-item-desc">GDP pharma-grade vaults.</span>
+                      </div>
+                    </a>
+                    <a href="/services/customs-clearance" className="dropdown-item">
+                      <div className="dropdown-item-icon">C</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Customs Brokerage</span>
+                        <span className="dropdown-item-desc">FASAH & SABER clearance.</span>
+                      </div>
+                    </a>
+                  </div>
                 </li>
-                <li className={activeSection === "mission-vision" && isHome ? "active" : ""}>
-                  <a href={getLink("mission-vision")} id="nav-mission-vision">Our Mission</a>
+
+                {/* Global Network Dropdown */}
+                <li className="nav-item-dropdown">
+                  <a href="#" className="nav-dropdown-trigger" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }} onClick={(e) => e.preventDefault()}>
+                    Global Network
+                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="3" style={{ transition: "transform 0.3s ease" }}>
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </a>
+                  <div className="dropdown-menu wide-dropdown" style={{ minWidth: "520px" }}>
+                    <a href="/uae" className="dropdown-item">
+                      <div className="dropdown-item-icon">AE</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">United Arab Emirates</span>
+                        <span className="dropdown-item-desc">Dubai HQ & Jebel Ali operations desk.</span>
+                      </div>
+                    </a>
+                    <a href="/saudi-arabia" className="dropdown-item">
+                      <div className="dropdown-item-icon">SA</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Saudi Arabia Hub</span>
+                        <span className="dropdown-item-desc">Riyadh Olaya office & customs brokerage.</span>
+                      </div>
+                    </a>
+                    <a href="/india" className="dropdown-item">
+                      <div className="dropdown-item-icon">IN</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">India Operations</span>
+                        <span className="dropdown-item-desc">Mumbai JNPT port clearance agent.</span>
+                      </div>
+                    </a>
+                    <a href="/china" className="dropdown-item">
+                      <div className="dropdown-item-icon">CN</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">China Gateway</span>
+                        <span className="dropdown-item-desc">Shanghai & Shenzhen export dispatch.</span>
+                      </div>
+                    </a>
+                  </div>
                 </li>
+
+                {/* Client Portal (Session Access) Dropdown */}
+                <li className="nav-item-dropdown">
+                  <a href="#" className="nav-dropdown-trigger" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }} onClick={(e) => e.preventDefault()}>
+                    Portal
+                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="3" style={{ transition: "transform 0.3s ease" }}>
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </a>
+                  <div className="dropdown-menu" style={{ minWidth: "300px" }}>
+                    <a
+                      href="#"
+                      className="dropdown-item"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setTrackingStatus("idle");
+                        setTrackingId("");
+                        setTrackingError("");
+                        setTrackingModalOpen(true);
+                      }}
+                      id="nav-item-track"
+                    >
+                      <div className="dropdown-item-icon">📡</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Track Consignment</span>
+                        <span className="dropdown-item-desc">Verify shipping arcs & telemetry.</span>
+                      </div>
+                    </a>
+                    <a
+                      href="#"
+                      className="dropdown-item"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setLoginStatus("idle");
+                        setLoginEmail("");
+                        setLoginPasscode("");
+                        setLoginMessage("");
+                        setLoginModalOpen(true);
+                      }}
+                      id="nav-item-login"
+                    >
+                      <div className="dropdown-item-icon">🔑</div>
+                      <div className="dropdown-item-content">
+                        <span className="dropdown-item-title">Client Login</span>
+                        <span className="dropdown-item-desc">Secure portal session credentials.</span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+
+                {/* Contact Us direct link */}
                 <li className={activeSection === "contact" && isHome ? "active" : ""}>
                   <a href={getLink("contact")} id="nav-contact">Contact Us</a>
                 </li>
@@ -126,21 +345,9 @@ export default function Header() {
               id="mobile-toggle-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <span
-                style={
-                  mobileMenuOpen
-                    ? { transform: "rotate(45deg) translate(4px, 4px)" }
-                    : {}
-                }
-              ></span>
+              <span style={mobileMenuOpen ? { transform: "rotate(45deg) translate(4px, 4px)" } : {}}></span>
               <span style={mobileMenuOpen ? { opacity: 0 } : {}}></span>
-              <span
-                style={
-                  mobileMenuOpen
-                    ? { transform: "rotate(-45deg) translate(4px, -4px)" }
-                    : {}
-                }
-              ></span>
+              <span style={mobileMenuOpen ? { transform: "rotate(-45deg) translate(4px, -4px)" } : {}}></span>
             </button>
           </div>
         </div>
@@ -158,6 +365,7 @@ export default function Header() {
             height: "100vh",
             background: "rgba(31, 42, 68, 0.2)",
             backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
             zIndex: 1040,
             transition: "opacity 0.4s ease",
           }}
@@ -175,6 +383,7 @@ export default function Header() {
           height: "100vh",
           background: "rgba(255, 255, 255, 0.95)",
           backdropFilter: "blur(25px)",
+          WebkitBackdropFilter: "blur(25px)",
           borderLeft: "1px solid var(--color-border-glass)",
           zIndex: 1050,
           padding: "6rem 2rem",
@@ -183,30 +392,74 @@ export default function Header() {
           gap: "2.5rem",
           transition: "right 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
           boxShadow: "-10px 0 30px rgba(31, 42, 68, 0.05)",
+          visibility: mobileMenuOpen ? "visible" : "hidden",
+          overflowY: "auto",
         }}
       >
         <ul className="mobile-nav-links">
           <li className={activeSection === "home" && isHome ? "active" : ""}>
             <a href={getLink("home")} onClick={() => setMobileMenuOpen(false)}>
-              Home
+              Home Base
             </a>
           </li>
-          <li className={activeSection === "about" && isHome ? "active" : ""}>
-            <a href={getLink("about")} onClick={() => setMobileMenuOpen(false)}>
-              About
+
+          {/* Services group */}
+          <li style={{ marginTop: "1rem", marginBottom: "0.25rem" }}>
+            <span style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "1.5px", color: "var(--color-accent-gold)", textTransform: "uppercase" }}>Services</span>
+          </li>
+          <li>
+            <a href="/services/freight-forwarding" onClick={() => setMobileMenuOpen(false)}>Freight Forwarding</a>
+          </li>
+          <li>
+            <a href="/services/air-freight" onClick={() => setMobileMenuOpen(false)}>Air Cargo</a>
+          </li>
+          <li>
+            <a href="/services/sea-freight" onClick={() => setMobileMenuOpen(false)}>Ocean Shipping</a>
+          </li>
+          <li>
+            <a href="/services/road-transportation" onClick={() => setMobileMenuOpen(false)}>Overland Trucking</a>
+          </li>
+          <li>
+            <a href="/services/warehousing" onClick={() => setMobileMenuOpen(false)}>Cold Chain Vault</a>
+          </li>
+          <li>
+            <a href="/services/customs-clearance" onClick={() => setMobileMenuOpen(false)}>Customs Brokerage</a>
+          </li>
+
+          {/* Gateways group */}
+          <li style={{ marginTop: "1rem", marginBottom: "0.25rem" }}>
+            <span style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "1.5px", color: "var(--color-accent-gold)", textTransform: "uppercase" }}>Global Network</span>
+          </li>
+          <li>
+            <a href="/uae" onClick={() => setMobileMenuOpen(false)}>United Arab Emirates</a>
+          </li>
+          <li>
+            <a href="/saudi-arabia" onClick={() => setMobileMenuOpen(false)}>Saudi Arabia Hub</a>
+          </li>
+          <li>
+            <a href="/india" onClick={() => setMobileMenuOpen(false)}>India Operations</a>
+          </li>
+          <li>
+            <a href="/china" onClick={() => setMobileMenuOpen(false)}>China Gateway</a>
+          </li>
+
+          {/* Portal group */}
+          <li style={{ marginTop: "1rem", marginBottom: "0.25rem" }}>
+            <span style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "1.5px", color: "var(--color-accent-gold)", textTransform: "uppercase" }}>Client Portal</span>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setTrackingStatus("idle"); setTrackingId(""); setTrackingError(""); setTrackingModalOpen(true); }}>
+              Track Consignment
             </a>
           </li>
-          <li className={activeSection === "services" && isHome ? "active" : ""}>
-            <a href={getLink("services")} onClick={() => setMobileMenuOpen(false)}>
-              Services
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setLoginStatus("idle"); setLoginEmail(""); setLoginPasscode(""); setLoginMessage(""); setLoginModalOpen(true); }}>
+              Client Login
             </a>
           </li>
-          <li className={activeSection === "mission-vision" && isHome ? "active" : ""}>
-            <a href={getLink("mission-vision")} onClick={() => setMobileMenuOpen(false)}>
-              Our Mission
-            </a>
-          </li>
-          <li className={activeSection === "contact" && isHome ? "active" : ""}>
+
+          {/* Contact Us */}
+          <li style={{ marginTop: "1.5rem" }} className={activeSection === "contact" && isHome ? "active" : ""}>
             <a href={getLink("contact")} onClick={() => setMobileMenuOpen(false)}>
               Contact Us
             </a>
@@ -237,6 +490,191 @@ export default function Header() {
           </a>
         </div>
       </div>
+
+      {/* 📡 Interactive Tracking Satellite Telemetry Modal */}
+      {trackingModalOpen && (
+        <div className="modal-overlay active" style={{ zIndex: 1600 }}>
+          <div className="modal-content glass-panel" style={{ background: "rgba(15, 23, 42, 0.95)", border: "1px solid rgba(198, 167, 94, 0.3)", maxWidth: "580px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "1rem" }}>
+              <h3 className="text-gold" style={{ margin: 0, fontSize: "1.2rem", letterSpacing: "2px", textTransform: "uppercase" }}>
+                Satellite Cargo Telemetry
+              </h3>
+              <button
+                style={{ background: "none", border: "none", color: "#94A3B8", cursor: "pointer", fontSize: "1.25rem" }}
+                onClick={() => setTrackingModalOpen(false)}
+                aria-label="Close Tracking Modal"
+              >
+                &times;
+              </button>
+            </div>
+
+            {trackingStatus === "idle" && (
+              <form onSubmit={handleTrackingQuery}>
+                <p style={{ color: "#E2E8F0", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
+                  Query real-time shipping corridors, container temperature metrics, and WCO customs clearance handshakes.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.5rem" }}>
+                  <label className="form-label" style={{ fontSize: "0.68rem" }}>Booking or Consignment ID</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="e.g., HSN-7042-DXB"
+                    value={trackingId}
+                    onChange={(e) => setTrackingId(e.target.value)}
+                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)" }}
+                  />
+                  {trackingError && <span style={{ color: "#EF4444", fontSize: "0.75rem", marginTop: "0.25rem" }}>{trackingError}</span>}
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <button type="submit" className="btn-glass-3d" style={{ padding: "0.8rem 1.8rem", fontSize: "0.75rem" }}>
+                    Establish Telemetry Link
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {trackingStatus === "loading" && (
+              <div style={{ textAlign: "center", padding: "2.5rem 0" }}>
+                <span className="hero-subtitle" style={{ animation: "pulse 1.5s infinite", display: "block" }}>Querying Satellite Arc...</span>
+                <div style={{ width: "100%", height: "2px", background: "rgba(255,255,255,0.1)", borderRadius: "2px", overflow: "hidden", margin: "1.5rem 0 1rem 0" }}>
+                  <div style={{ width: "70%", height: "100%", background: "var(--color-accent-gold)", borderRadius: "2px", animation: "marquee 2s linear infinite" }}></div>
+                </div>
+                <p style={{ fontSize: "0.75rem", color: "#64748B", fontFamily: "var(--font-sans)", margin: 0 }}>
+                  [Handshaking secure biometric nodes] // [Loading GPS logs]
+                </p>
+              </div>
+            )}
+
+            {trackingStatus === "result" && (
+              <div>
+                <div style={{ background: "rgba(16, 185, 129, 0.08)", border: "1px solid rgba(16, 185, 129, 0.3)", borderRadius: "6px", padding: "1rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#10B981", boxShadow: "0 0 10px #10B981" }}></span>
+                  <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: "1.5px" }}>
+                    CUSTODY SECURED // TRANSMITTING STABLE TELEMETRY
+                  </span>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1.5rem", fontSize: "0.8rem" }}>
+                  <div style={{ padding: "0.75rem", background: "rgba(255,255,255,0.03)", borderRadius: "4px" }}>
+                    <div style={{ color: "#64748B", fontSize: "0.68rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "0.25rem" }}>Consignment ID</div>
+                    <div style={{ color: "#F8FAFC", fontWeight: 700 }}>{trackingId.toUpperCase()}</div>
+                  </div>
+                  <div style={{ padding: "0.75rem", background: "rgba(255,255,255,0.03)", borderRadius: "4px" }}>
+                    <div style={{ color: "#64748B", fontSize: "0.68rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "0.25rem" }}>Carrier / Vessel</div>
+                    <div style={{ color: "#F8FAFC", fontWeight: 700 }}>HASOON EMERALD (Voyage 88E)</div>
+                  </div>
+                  <div style={{ padding: "0.75rem", background: "rgba(255,255,255,0.03)", borderRadius: "4px" }}>
+                    <div style={{ color: "#64748B", fontSize: "0.68rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "0.25rem" }}>Route Vector</div>
+                    <div style={{ color: "#F8FAFC", fontWeight: 700 }}>Jebel Ali (AE) → JNPT Mumbai (IN)</div>
+                  </div>
+                  <div style={{ padding: "0.75rem", background: "rgba(255,255,255,0.03)", borderRadius: "4px" }}>
+                    <div style={{ color: "#64748B", fontSize: "0.68rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "0.25rem" }}>Coordinates</div>
+                    <div style={{ color: "var(--color-accent-gold)", fontWeight: 700 }}>12.5833&deg; N, 74.8500&deg; E</div>
+                  </div>
+                  <div style={{ padding: "0.75rem", background: "rgba(255,255,255,0.03)", borderRadius: "4px" }}>
+                    <div style={{ color: "#64748B", fontSize: "0.68rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "0.25rem" }}>Cold Chain Core Temp</div>
+                    <div style={{ color: "#F8FAFC", fontWeight: 700 }}>+4.2&deg;C (GDP Stable)</div>
+                  </div>
+                  <div style={{ padding: "0.75rem", background: "rgba(255,255,255,0.03)", borderRadius: "4px" }}>
+                    <div style={{ color: "#64748B", fontSize: "0.68rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "0.25rem" }}>Priority Clearance</div>
+                    <div style={{ color: "var(--color-accent-gold)", fontWeight: 700 }}>AEO Priority Rank L1</div>
+                  </div>
+                </div>
+
+                <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: "4px", padding: "1rem", fontFamily: "monospace", fontSize: "0.7rem", color: "#94A3B8", lineHeight: "1.6", marginBottom: "1.5rem" }}>
+                  <div>[08:12 GST] satellite telemetry link locked on container manifest.</div>
+                  <div>[09:44 GST] cargo temperature logged: +4.2&deg;C (GDP compliant).</div>
+                  <div>[11:00 GST] customs credentials handshake completed securely via AEO.</div>
+                  <div>[13:25 GST] GPS path vector verified. Next sat-pass in 44min.</div>
+                </div>
+
+                <div style={{ display: "flex", gap: "1rem", justifyContent: "flex-end" }}>
+                  <button className="btn-glass-3d btn-secondary" onClick={() => setTrackingStatus("idle")} style={{ padding: "0.8rem 1.8rem", fontSize: "0.75rem" }}>
+                    New Query
+                  </button>
+                  <button className="btn-glass-3d" onClick={() => setTrackingModalOpen(false)} style={{ padding: "0.8rem 1.8rem", fontSize: "0.75rem" }}>
+                    Terminate Stream
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 🔑 Interactive Secure Login Modal */}
+      {loginModalOpen && (
+        <div className="modal-overlay active" style={{ zIndex: 1600 }}>
+          <div className="modal-content glass-panel" style={{ background: "rgba(15, 23, 42, 0.95)", border: "1px solid rgba(198, 167, 94, 0.3)", maxWidth: "480px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "1rem" }}>
+              <h3 className="text-gold" style={{ margin: 0, fontSize: "1.2rem", letterSpacing: "2px", textTransform: "uppercase" }}>
+                Secure Desk Login
+              </h3>
+              <button
+                style={{ background: "none", border: "none", color: "#94A3B8", cursor: "pointer", fontSize: "1.25rem" }}
+                onClick={() => setLoginModalOpen(false)}
+                aria-label="Close Login Modal"
+              >
+                &times;
+              </button>
+            </div>
+
+            {loginStatus !== "authenticating" && (
+              <form onSubmit={handleLoginSubmit}>
+                <p style={{ color: "#E2E8F0", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
+                  Establish an encrypted portal session to access shipping manifests, customs paperwork, and line-haul schedules.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginBottom: "1.5rem" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                    <label className="form-label" style={{ fontSize: "0.68rem" }}>Secure Email Address</label>
+                    <input
+                      type="email"
+                      className="form-input"
+                      placeholder="client@corporate.com"
+                      value={loginEmail}
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)" }}
+                    />
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                    <label className="form-label" style={{ fontSize: "0.68rem" }}>Cryptographic Passcode / Secret Key</label>
+                    <input
+                      type="password"
+                      className="form-input"
+                      placeholder="••••••••••••"
+                      value={loginPasscode}
+                      onChange={(e) => setLoginPasscode(e.target.value)}
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)" }}
+                    />
+                  </div>
+                  {loginMessage && (
+                    <div style={{ fontSize: "0.78rem", color: loginStatus === "error" ? "#EF4444" : "#C6A75E", lineHeight: "1.5" }}>
+                      {loginMessage}
+                    </div>
+                  )}
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <button type="submit" className="btn-glass-3d" style={{ padding: "0.8rem 1.8rem", fontSize: "0.75rem" }}>
+                    Initialize Secure Handshake
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {loginStatus === "authenticating" && (
+              <div style={{ textAlign: "center", padding: "2.5rem 0" }}>
+                <span className="hero-subtitle" style={{ animation: "pulse 1.5s infinite", display: "block" }}>Verifying Secure Token...</span>
+                <div style={{ width: "100%", height: "2px", background: "rgba(255,255,255,0.1)", borderRadius: "2px", overflow: "hidden", margin: "1.5rem 0 1rem 0" }}>
+                  <div style={{ width: "50%", height: "100%", background: "var(--color-accent-gold)", borderRadius: "2px", animation: "marquee 2s linear infinite" }}></div>
+                </div>
+                <p style={{ fontSize: "0.75rem", color: "#64748B", fontFamily: "var(--font-sans)", margin: 0 }}>
+                  [Decrypting handshake signatures] // [Running server audit logs]
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }

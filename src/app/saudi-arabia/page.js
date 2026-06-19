@@ -17,7 +17,12 @@ export const metadata = {
     "jeddah customs clearance",
     "overland trucking dubai to saudi",
     "saber compliance saudi",
-    "hasoon logistics"
+    "hasoon logistics",
+    "FASAH customs clearance portal",
+    "ZATCA e-invoicing compliance",
+    "Jeddah Islamic Port container forwarding",
+    "Dammam King Abdulaziz Port customs clearance",
+    "cross border trucking GCC customs"
   ],
   alternates: {
     canonical: "https://hasoonlogistics.com/saudi-arabia",
@@ -59,7 +64,7 @@ export default function SaudiArabiaRegion() {
               <span className="hero-subtitle">Saudi Vision 2030</span>
               <h1>Logistics Solutions in Saudi Arabia</h1>
               <p>
-                As Saudi Arabia builds the future of regional trade, Hasoon Logistics provides end-to-end customs clearance, local warehousing, and secure GCC overland trucking dispatch to Riyadh, Jeddah, and Dammam.
+                As Saudi Arabia builds the future of regional trade, Hasoon Logistics provides end-to-end saudi customs clearance agent support, riyadh logistics company storage, and secure overland trucking dubai to saudi dispatch to Riyadh, Jeddah, and Dammam.
               </p>
             </div>
           </div>
@@ -72,7 +77,7 @@ export default function SaudiArabiaRegion() {
                 <span className="hero-subtitle">Riyadh & Jeddah Hubs</span>
                 <h2>Saudi Customs & SABER Filings</h2>
                 <p>
-                  We coordinate with customs checkpoints to clear goods through ports and borders, ensuring full integration with Saudi Arabia's digital clearance platforms (FASAH and SABER).
+                  We coordinate with customs checkpoints to clear goods through Jeddah Islamic Port and King Abdulaziz Port Dammam, ensuring full integration with Saudi Arabia's digital clearance platforms, including FASAH customs clearance portal, ZATCA compliance, and SABER compliance saudi.
                 </p>
                 <ul className="service-list">
                   <li>

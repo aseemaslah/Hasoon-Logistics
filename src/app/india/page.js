@@ -17,7 +17,12 @@ export const metadata = {
     "shipping company nhava sheva",
     "india to uae logistics",
     "multi-modal transport india",
-    "hasoon logistics"
+    "hasoon logistics",
+    "Mundra port customs clearance broker",
+    "Chennai air cargo forwarding",
+    "CEPA tariff rate quotas",
+    "dry port ICD clearance India",
+    "Mumbai custom house agent CHA"
   ],
   alternates: {
     canonical: "https://hasoonlogistics.com/india",
@@ -59,7 +64,7 @@ export default function IndiaRegion() {
               <span className="hero-subtitle">Multi-Modal Infrastructure</span>
               <h1>Logistics Solutions in India</h1>
               <p>
-                Connecting major trade corridors. Hasoon Logistics coordinates certified customs clearance, multi-modal rail-road transport, and sea-air freight consolidation across India's largest shipping gateways.
+                Connecting major trade corridors. Hasoon Logistics is the best freight forwarder in india and trusted customs broker in mumbai, coordinating certified customs clearance, multi-modal transport india rail links, and sea-air freight consolidation across India's largest shipping gateways.
               </p>
             </div>
           </div>
@@ -72,7 +77,7 @@ export default function IndiaRegion() {
                 <span className="hero-subtitle">Trade Corridors</span>
                 <h2>Nhava Sheva, Mumbai & Delhi NCR</h2>
                 <p>
-                  We coordinate sea containers through Nhava Sheva (JNPT), Chennai Port, and Mundra, managing custom brokerage in compliance with Indian regulatory bodies (FFFAI).
+                  As an authorized Mumbai custom house agent (CHA), we coordinate sea containers through Nhava Sheva (JNPT), Chennai Port, and Mundra, managing custom clearance, dry port ICD clearance India, and direct India to UAE logistics in compliance with regulatory bodies (FFFAI).
                 </p>
                 <ul className="service-list">
                   <li>

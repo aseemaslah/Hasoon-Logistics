@@ -82,7 +82,7 @@ export default function ContactForm() {
   return (
     <div className="glass-panel">
       {!formSubmitted ? (
-        <form id="logistics-contact-form" onSubmit={handleFormSubmit} noValidate>
+        <form id="logistics-contact-form" className="contact-form" onSubmit={handleFormSubmit} noValidate>
           <div className="form-group-row">
             <div className="form-group">
               <label htmlFor="contact-name" className="form-label">Full Name</label>
@@ -95,6 +95,7 @@ export default function ContactForm() {
                 onChange={handleInputChange}
                 style={errors.name ? { borderColor: "rgba(220, 53, 69, 0.5)" } : {}}
                 required
+                suppressHydrationWarning
               />
               {errors.name && (
                 <span style={{ fontSize: "0.7rem", color: "rgba(220, 53, 69, 0.9)", marginTop: "2px" }}>
@@ -113,6 +114,7 @@ export default function ContactForm() {
                 onChange={handleInputChange}
                 style={errors.email ? { borderColor: "rgba(220, 53, 69, 0.5)" } : {}}
                 required
+                suppressHydrationWarning
               />
               {errors.email && (
                 <span style={{ fontSize: "0.7rem", color: "rgba(220, 53, 69, 0.9)", marginTop: "2px" }}>
@@ -134,6 +136,7 @@ export default function ContactForm() {
                 onChange={handleInputChange}
                 style={errors.phone ? { borderColor: "rgba(220, 53, 69, 0.5)" } : {}}
                 required
+                suppressHydrationWarning
               />
               {errors.phone && (
                 <span style={{ fontSize: "0.7rem", color: "rgba(220, 53, 69, 0.9)", marginTop: "2px" }}>
@@ -150,6 +153,7 @@ export default function ContactForm() {
                 onChange={handleInputChange}
                 style={errors.service ? { borderColor: "rgba(220, 53, 69, 0.5)" } : {}}
                 required
+                suppressHydrationWarning
               >
                 <option value="" disabled>Select capability needed</option>
                 <option value="air">Priority Air Cargo</option>
@@ -175,6 +179,7 @@ export default function ContactForm() {
               onChange={handleInputChange}
               style={errors.message ? { borderColor: "rgba(220, 53, 69, 0.5)" } : {}}
               required
+              suppressHydrationWarning
             ></textarea>
             {errors.message && (
               <span style={{ fontSize: "0.7rem", color: "rgba(220, 53, 69, 0.9)", marginTop: "2px" }}>
@@ -189,6 +194,7 @@ export default function ContactForm() {
               className="btn-glass-3d"
               disabled={submitting}
               style={submitting ? { opacity: 0.7 } : {}}
+              suppressHydrationWarning
             >
               {submitting ? "SENDING CLEARANCE SECURELY..." : "Submit secure request"}
             </button>
@@ -228,7 +234,7 @@ export default function ContactForm() {
           >
             Your request has been routed to our corporate private support desk. A representative will contact you in under 2 hours.
           </p>
-          <button onClick={resetForm} className="btn-glass-3d">
+          <button onClick={resetForm} className="btn-glass-3d" suppressHydrationWarning>
             Send another request
           </button>
         </div>

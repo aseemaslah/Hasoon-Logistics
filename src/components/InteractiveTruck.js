@@ -147,8 +147,8 @@ export default function InteractiveTruck() {
       animationFrameId = requestAnimationFrame(animate);
       time += 0.015;
 
-      const width = canvas.width / (window.devicePixelRatio || 1);
-      const height = canvas.height / (window.devicePixelRatio || 1);
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
 
       // Clear
       ctx.clearRect(0, 0, width, height);

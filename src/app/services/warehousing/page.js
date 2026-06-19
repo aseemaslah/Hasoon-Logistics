@@ -6,7 +6,7 @@ import ClientInitializer from "@/components/ClientInitializer";
 import BackgroundShader from "@/components/BackgroundShader";
 
 export const metadata = {
-  title: "Cold Chain Logistics & Temperature Controlled Warehousing - Hasoon Logistics",
+  title: "Cold Chain Logistics & Temperature Controlled Warehousing | Hasoon Logistics",
   description: "Hasoon Logistics is the best cold chain logistics provider in Dubai, offering GDP-compliant temperature-controlled warehousing, pharmaceutical storage, and bonded logistics.",
   keywords: [
     "cold chain logistics dubai",
@@ -14,8 +14,16 @@ export const metadata = {
     "bonded logistics warehouse",
     "pharma warehouse storage",
     "3pl warehousing dubai",
-    "hasoon logistics"
+    "hasoon logistics",
+    "GDP pharma cold chain",
+    "biometric logistics storage",
+    "free zone bonded warehousing JAFZA",
+    "temperature container logistics"
   ],
+  robots: {
+    index: true,
+    follow: true,
+  },
   alternates: {
     canonical: "https://hasoonlogistics.com/services/warehousing",
   },

@@ -17,7 +17,12 @@ export const metadata = {
     "jebel ali customs broker",
     "dubai trade customs clearance",
     "shipping company uae",
-    "hasoon logistics"
+    "hasoon logistics",
+    "dubai customs clearance online",
+    "JAFZA bonded warehousing",
+    "DAFZA priority air cargo consolidation",
+    "cargo forwarding company in UAE",
+    "best shipping line agent in Dubai"
   ],
   alternates: {
     canonical: "https://hasoonlogistics.com/uae",
@@ -59,7 +64,7 @@ export default function UaeRegion() {
               <span className="hero-subtitle">Dubai Global Hub</span>
               <h1>Logistics Solutions in the UAE</h1>
               <p>
-                Operating at the crossroads of international commerce, Hasoon Logistics coordinates high-capacity cargo forwarding, climate-controlled storage, and customs brokerage across all emirates.
+                Operating as the best logistics company in Dubai and certified customs clearance agent in Dubai, UAE, Hasoon Logistics coordinates high-capacity cargo forwarding, climate-controlled storage, JAFZA bonded warehousing, and Dubai Trade customs brokerage across all emirates.
               </p>
             </div>
           </div>
@@ -72,7 +77,7 @@ export default function UaeRegion() {
                 <span className="hero-subtitle">Gateway Capabilities</span>
                 <h2>Dubai & Jebel Ali Operations</h2>
                 <p>
-                  We coordinate freight lines and bonded warehousing in Jebel Ali Free Zone (JAFZA), Dubai Airport Freezone (DAFZA), and Abu Dhabi. We streamline import/export duties using the UAE-India CEPA framework.
+                  We coordinate freight lines, shipping company UAE solutions, and bonded warehousing in Jebel Ali Free Zone (JAFZA) and Dubai Airport Freezone (DAFZA). We offer certified Dubai customs clearance online and streamline import/export duties using the UAE-India CEPA framework.
                 </p>
                 <ul className="service-list">
                   <li>

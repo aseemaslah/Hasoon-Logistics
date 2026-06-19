@@ -6,7 +6,7 @@ import ClientInitializer from "@/components/ClientInitializer";
 import BackgroundShader from "@/components/BackgroundShader";
 
 export const metadata = {
-  title: "Priority Air Cargo & Air Freight Forwarding - Hasoon Logistics",
+  title: "Priority Air Cargo & Air Freight Forwarding | Hasoon Logistics",
   description: "Hasoon Logistics is the best air freight forwarding company in Dubai, offering priority air cargo shipping, express charter flights, and global door-to-door transit.",
   keywords: [
     "air freight forwarding dubai",
@@ -14,8 +14,16 @@ export const metadata = {
     "best air cargo company",
     "international air shipping",
     "express air cargo charter",
-    "hasoon logistics"
+    "hasoon logistics",
+    "door to door air shipping",
+    "pharma air cargo transport",
+    "IATA certified air forwarder",
+    "cargo flight chartering Dubai"
   ],
+  robots: {
+    index: true,
+    follow: true,
+  },
   alternates: {
     canonical: "https://hasoonlogistics.com/services/air-freight",
   },
