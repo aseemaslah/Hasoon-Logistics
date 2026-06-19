@@ -55,7 +55,7 @@ export default function SeaFreight() {
       <Header />
 
       <main>
-        <section className="hero" style={{ minHeight: "70vh", padding: "10rem 0 6rem 0", position: "relative" }}>
+        <section className="hero" style={{ minHeight: "50vh", padding: "8rem 0 3rem 0", position: "relative" }}>
           <InteractiveShip />
           <div className="container" style={{ position: "relative", zIndex: 2 }}>
             <div className="hero-content scroll-reveal scroll-revealed" style={{ maxWidth: "700px" }}>

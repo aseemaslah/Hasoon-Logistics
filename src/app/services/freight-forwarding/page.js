@@ -55,7 +55,7 @@ export default function FreightForwarding() {
       <Header />
 
       <main>
-        <section className="hero" style={{ minHeight: "60vh", padding: "10rem 0 6rem 0" }}>
+        <section className="hero" style={{ minHeight: "40vh", padding: "8rem 0 3rem 0" }}>
           <div className="container">
             <div className="hero-content scroll-reveal scroll-revealed" style={{ maxWidth: "800px" }}>
               <span className="hero-subtitle">Capabilities</span>

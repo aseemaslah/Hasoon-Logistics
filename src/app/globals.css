@@ -126,7 +126,12 @@ a {
 }
 
 .section-padding {
-  padding: 8rem 0;
+  padding: 4.5rem 0;
+  border-bottom: 1px dashed rgba(31, 42, 68, 0.08);
+}
+
+.section-padding:last-of-type {
+  border-bottom: none;
 }
 
 section[id] {
