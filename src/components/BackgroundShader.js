@@ -38,6 +38,7 @@ export default function BackgroundShader() {
     const resize = () => {
       const w = canvas.clientWidth * scale;
       const h = canvas.clientHeight * scale;
+      if (w <= 0 || h <= 0) return;
       canvas.width = w;
       canvas.height = h;
     };

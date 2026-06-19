@@ -14,7 +14,7 @@ export default function InteractiveShip() {
     let cleanupFn = () => {};
 
     try {
-      let width = container.clientWidth;
+      let width = container.clientWidth || 300;
       let height = container.clientHeight || 550;
 
       // Responsive offset: X=75 on desktop, X=0 on mobile (centered)
@@ -322,6 +322,7 @@ export default function InteractiveShip() {
       const handleResize = () => {
         width = container.clientWidth;
         height = container.clientHeight || 550;
+        if (width <= 0 || height <= 0) return;
         camera.aspect = width / height;
 
         const newMobile = width < 1024;
@@ -343,7 +344,7 @@ export default function InteractiveShip() {
         animationFrameId = requestAnimationFrame(animate);
         time += 0.015;
 
-        const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+        const scrollSpeed = typeof window !== "undefined" && window.scrollVelocity && !isNaN(window.scrollVelocity) ? Math.min(window.scrollVelocity, 4.0) : 0;
         const speedMultiplier = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
 
         if (!isDragging) {

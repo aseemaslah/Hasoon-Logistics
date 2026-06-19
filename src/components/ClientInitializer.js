@@ -78,7 +78,7 @@ export default function ClientInitializer() {
             }
           });
         },
-        { threshold: 0.02, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0.02, rootMargin: "0px 0px -10px 0px" }
       );
 
       // Observe existing elements
@@ -123,7 +123,8 @@ export default function ClientInitializer() {
       if (dt > 0) {
         const dist = Math.abs(st - lastScrollTop);
         const rawVel = dist / dt; // pixels per ms
-        window.scrollVelocity = window.scrollVelocity * 0.85 + rawVel * 0.15;
+        const currentVel = (window.scrollVelocity && !isNaN(window.scrollVelocity)) ? window.scrollVelocity : 0;
+        window.scrollVelocity = currentVel * 0.85 + rawVel * 0.15;
       }
       lastScrollTop = st;
       lastScrollTime = now;
@@ -139,7 +140,8 @@ export default function ClientInitializer() {
       const now = Date.now();
       if (typeof window !== "undefined" && window.scrollVelocity !== undefined) {
         if (now - lastScrollTime > 50) {
-          window.scrollVelocity *= 0.9;
+          const currentVel = (!isNaN(window.scrollVelocity)) ? window.scrollVelocity : 0;
+          window.scrollVelocity = currentVel * 0.9;
           if (window.scrollVelocity < 0.01) {
             window.scrollVelocity = 0;
           }

@@ -24,6 +24,7 @@ export default function UaeAnimation() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const width = container.clientWidth;
       const height = container.clientHeight || 350;
+      if (width <= 0 || height <= 0) return;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.scale(dpr, dpr);
@@ -140,7 +141,7 @@ export default function UaeAnimation() {
       ctx.stroke();
 
       // 3. Draw Route Lanes and Detailed Vehicles
-      const scrollSpeed = typeof window !== "undefined" ? Math.min(window.scrollVelocity || 0, 4.0) : 0;
+      const scrollSpeed = typeof window !== "undefined" && window.scrollVelocity && !isNaN(window.scrollVelocity) ? Math.min(window.scrollVelocity, 4.0) : 0;
       const multiplier = (isHovered.current ? 2.5 : 1.0) * (1.0 + scrollSpeed * 1.5);
 
       routes.forEach((route) => {
