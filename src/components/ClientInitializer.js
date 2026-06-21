@@ -4,6 +4,9 @@ import { useEffect } from "react";
 
 export default function ClientInitializer() {
   useEffect(() => {
+    // Initialize progressive enhancement for scroll-reveal elements
+    document.documentElement.classList.add("js-reveal-active");
+
     // 1. Beveled 3D Button Mouse Move & Touch Tilt Trackers
     const links = document.querySelectorAll(".nav-links a, .btn-glass-3d, .gateway-card");
 

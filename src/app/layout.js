@@ -1,4 +1,6 @@
 import "./globals.css";
+import Chatbot from "@/components/Chatbot";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export const metadata = {
   title: "Best Logistics Company & Freight Forwarding | Hasoon Logistics",
@@ -63,7 +65,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <LoadingScreen />
+        {children}
+        <Chatbot />
+      </body>
     </html>
   );
 }

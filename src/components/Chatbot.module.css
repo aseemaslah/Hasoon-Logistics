@@ -1,0 +1,518 @@
+/* Hasoon Logistics Chatbot - Premium Glassmorphism CSS Stylesheet */
+
+.chatbotTrigger {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px; /* Bigger trigger on laptop/desktop */
+  height: 68px; /* Bigger trigger on laptop/desktop */
+  border-radius: var(--border-radius-full);
+  background: var(--color-bg-glass);
+  border: 1px solid var(--color-accent-gold); /* Prominent gold border */
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 0 15px rgba(198, 167, 94, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4), var(--shadow-organic);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  animation: glowPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(198, 167, 94, 0.3), var(--shadow-organic);
+    border-color: rgba(198, 167, 94, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(198, 167, 94, 0.75), var(--shadow-organic);
+    border-color: rgba(198, 167, 94, 1);
+  }
+}
+
+.clickMeBadge {
+  position: fixed;
+  bottom: 3.1rem; /* Aligned with larger trigger */
+  right: 7.5rem; /* Aligned with larger trigger */
+  background: var(--color-text-primary);
+  color: var(--color-accent-gold);
+  border: 1px solid var(--color-accent-gold);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 998;
+  box-shadow: 0 0 15px rgba(198, 167, 94, 0.35);
+  pointer-events: none;
+  animation: floatLeftRight 2s infinite ease-in-out;
+}
+
+.clickMeBadge::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: var(--color-text-primary);
+  border-top: 1px solid var(--color-accent-gold);
+  border-right: 1px solid var(--color-accent-gold);
+}
+
+@keyframes floatLeftRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
+.chatbotTrigger:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: var(--color-accent-gold);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(198, 167, 94, 0.25), var(--shadow-organic-hover);
+  animation-play-state: paused; /* Pause pulsing during manual hover */
+}
+
+.chatbotTrigger svg {
+  width: 28px; /* Scaled icon */
+  height: 28px; /* Scaled icon */
+  fill: var(--color-text-primary);
+  transition: transform 0.3s ease;
+}
+
+.chatbotTrigger:hover svg {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+/* Chatbot Window Container */
+.chatbotWindow {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  width: 390px;
+  height: 600px;
+  max-height: 80vh;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: rgba(232, 220, 200, 0.75); /* Frosted cream base matching --color-bg-primary */
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(198, 167, 94, 0.3);
+  border-bottom: 1px solid rgba(198, 167, 94, 0.3);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 20px 50px rgba(31, 42, 68, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chatbotWindowActive {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* Chat Header */
+.chatHeader {
+  background: var(--color-text-primary); /* Navy */
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-accent-gold);
+}
+
+.headerBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(198, 167, 94, 0.15);
+  border: 1px solid var(--color-accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-gold);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.headerInfo h4 {
+  color: var(--color-text-white);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.headerStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  color: #94A3B8;
+  font-family: var(--font-sans);
+  text-transform: none;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981; /* green */
+  box-shadow: 0 0 8px #10B981;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: var(--color-accent-gold);
+}
+
+/* Chat Messages Box */
+.chatHistory {
+  flex: 1;
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for Chat */
+.chatHistory::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatHistory::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chatHistory::-webkit-scrollbar-thumb {
+  background: rgba(198, 167, 94, 0.3);
+  border-radius: 3px;
+}
+
+.chatHistory::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 167, 94, 0.5);
+}
+
+/* Message Bubble Wrappers */
+.messageRow {
+  display: flex;
+  width: 100%;
+}
+
+.rowBot {
+  justify-content: flex-start;
+}
+
+.rowUser {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 80%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow-organic);
+}
+
+.bubbleBot {
+  background: var(--color-text-white);
+  color: var(--color-text-primary);
+  border-top-left-radius: 2px;
+  border: 1px solid rgba(198, 167, 94, 0.2);
+}
+
+.bubbleUser {
+  background: var(--color-text-primary);
+  color: var(--color-text-white);
+  border-top-right-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Quick Replies (FAQ buttons) */
+.optionsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+}
+
+.optionButton {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--color-border-gold);
+  border-radius: 20px;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(31, 42, 68, 0.03);
+}
+
+.optionButton:hover {
+  background: var(--color-text-primary);
+  color: var(--color-text-white);
+  border-color: var(--color-text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(31, 42, 68, 0.1);
+}
+
+/* Chat Input Area */
+.chatInputForm {
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.35);
+  border-top: 1px solid var(--color-border-glass);
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.chatInputField {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--color-border-glass);
+  border-radius: var(--border-radius-sm);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  transition: var(--transition-smooth);
+}
+
+.chatInputField:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 10px rgba(198, 167, 94, 0.15);
+}
+
+.sendButton {
+  background: var(--color-text-primary);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-white);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sendButton:hover {
+  background: var(--color-accent-gold);
+  color: var(--color-text-primary);
+  transform: scale(1.05);
+}
+
+.sendButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Typing Indicator Animation */
+.typingBubble {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.5rem 1rem;
+  background: var(--color-text-white);
+  border-radius: 12px;
+  border-top-left-radius: 2px;
+  border: 1px solid rgba(198, 167, 94, 0.15);
+  max-width: 60px;
+}
+
+.typingDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-accent-gold);
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typingDot:nth-child(1) { animation-delay: -0.32s; }
+.typingDot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* Tracking Step Visualizer Styling */
+.trackingCard {
+  width: 100%;
+  margin-top: 0.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--color-border-gold);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: var(--shadow-organic);
+}
+
+.trackingHeader {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(198, 167, 94, 0.3);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.trackingNumber {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.trackingEta {
+  font-size: 0.75rem;
+  color: var(--color-accent-gold);
+  font-weight: 600;
+}
+
+.trackingSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.trackingSteps::before {
+  content: '';
+  position: absolute;
+  top: 0.25rem;
+  left: 4px;
+  bottom: 0.25rem;
+  width: 2px;
+  background: #E2E8F0;
+}
+
+.trackingStep {
+  position: relative;
+  font-size: 0.78rem;
+  color: #64748B;
+}
+
+.stepDot {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #E2E8F0;
+  border: 2px solid white;
+}
+
+.stepCompleted {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.stepCompleted .stepDot {
+  background: var(--color-accent-gold);
+}
+
+.stepActive {
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+.stepActive .stepDot {
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Responsiveness adjustments for smaller devices */
+@media (max-width: 768px) {
+  .chatbotTrigger {
+    width: 56px;
+    height: 56px;
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+  .chatbotTrigger svg {
+    width: 24px;
+    height: 24px;
+  }
+  .clickMeBadge {
+    right: 6rem;
+    bottom: 2.2rem;
+  }
+  .chatbotWindow {
+    right: 1.5rem;
+    bottom: 5.8rem;
+    width: calc(100vw - 3rem);
+    height: 75vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatbotTrigger {
+    right: 1rem;
+    bottom: 1rem;
+    width: 56px;
+    height: 56px;
+  }
+  .clickMeBadge {
+    right: 5.5rem;
+    bottom: 1.7rem;
+  }
+  .chatbotWindow {
+    right: 1rem;
+    bottom: 5.5rem;
+    width: calc(100vw - 2rem);
+    height: 70vh;
+  }
+}
