@@ -430,6 +430,7 @@ header.scrolled .nav-glass-bar {
   width: 22px;
   height: 2px;
   margin-bottom: 4px;
+  background-color: #1F2A44; /* Fallback for legacy browsers */
   background-color: var(--color-text-primary);
   transition: var(--transition-smooth);
   pointer-events: none; /* Prevents WebKit click events bug by delegating taps to button */
@@ -675,16 +676,21 @@ header.scrolled .nav-glass-bar {
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.45); /* Fallback */
   border: 1px solid var(--color-border-glass);
+  border-radius: 10px; /* Fallback */
   border-radius: var(--border-radius-md);
   padding: 3.5rem 2rem;
   margin-top: 5rem;
 }
 
 .stat-number {
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif; /* Fallback */
   font-family: var(--font-serif);
+  font-size: 3rem; /* Fallback */
   font-size: clamp(2.5rem, 4vw, 3.8rem);
   font-weight: 600;
+  color: #1F2A44; /* Fallback */
   color: var(--color-text-primary);
   line-height: 1;
   margin-bottom: 0.5rem;
@@ -695,6 +701,7 @@ header.scrolled .nav-glass-bar {
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
+  color: #C6A75E; /* Fallback */
   color: var(--color-accent-gold);
 }
 
